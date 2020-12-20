@@ -24,7 +24,7 @@ Base lib for Treasure framework
   s.homepage         = 'https://github.com/loverbabyz/TFBaseLib_iOS'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'SunXiaofei' => 'sunxiaofei@sanshaoxingqiu.cn' }
+  s.author           = { 'SunXiaofei' => 'daniel.xiaofei@gmail.com' }
   s.source           = { :git => 'https://github.com/loverbabyz/TFBaseLib_iOS.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
@@ -36,7 +36,7 @@ Base lib for Treasure framework
   s.source_files = 'TFBaseLib_iOS/Classes/TFBaseLib_iOS.h'
   s.public_header_files = 'TFBaseLib_iOS/Classes/TFBaseLib_iOS.h'
 
-  s.resource = 'TFBaseLib_iOS/Assets/*.bundle'
+  # s.resource = 'TFBaseLib_iOS/Assets/*.bundle'
   
   # s.resource_bundles = {
   #   'TFBaseLib_iOS' => ['TFBaseLib_iOS/Assets/*.png']
@@ -89,12 +89,6 @@ Base lib for Treasure framework
   ss.platform = :ios
   ss.source_files = 'TFBaseLib_iOS/Classes/Core-DataHelper/*.{h,m}'
   ss.public_header_files = 'TFBaseLib_iOS/Classes/Core-DataHelper/*.h'
-
-    ss.subspec 'TFAutoCodingCopying' do |sss|
-    sss.platform = :ios
-    sss.source_files = 'TFBaseLib_iOS/Classes/Core-DataHelper/TFAutoCodingCopying/*.{h,m}'
-    sss.public_header_files = 'TFBaseLib_iOS/Classes/Core-DataHelper/TFAutoCodingCopying/*.h'
-    end
 
     ss.subspec 'TFUserDefaults' do |sss|
     sss.platform = :ios
