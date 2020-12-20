@@ -1,0 +1,13 @@
+#use_frameworks!
+
+platform :ios, '10.0'
+
+target 'TFBaseLib_iOS_Example' do
+  pod 'TFBaseLib_iOS', :path => '../'
+
+  target 'TFBaseLib_iOS_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
