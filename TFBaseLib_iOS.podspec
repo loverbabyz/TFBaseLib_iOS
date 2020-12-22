@@ -50,7 +50,7 @@ Base lib for Treasure framework
   s.ios.libraries = "stdc++", "sqlite3"
 #  s.ios.vendored_frameworks = "TFBaseLib_iOS/Classes/3rd-framework/**/*.{framework}"
 
-  s.frameworks = "Foundation", "UIKit", "CoreGraphics", "CoreData", "CoreText", "CoreTelephony", "CoreLocation", "Security", "ImageIO", "QuartzCore", "SystemConfiguration", "Photos", "CoreBluetooth", "AVFoundation", "Contacts", "LocalAuthentication", "CoreServices", "AdSupport", "AssetsLibrary", "AddressBook"
+  s.frameworks = "Foundation", "UIKit", "CoreGraphics", "CoreData", "CoreText", "CoreTelephony", "CoreLocation", "Security", "ImageIO", "QuartzCore", "SystemConfiguration", "Photos", "CoreBluetooth", "AVFoundation", "Contacts", "LocalAuthentication", "CoreServices", "AssetsLibrary", "AddressBook"
   
   s.subspec 'Core-3rd' do |ss|
   ss.platform = :ios

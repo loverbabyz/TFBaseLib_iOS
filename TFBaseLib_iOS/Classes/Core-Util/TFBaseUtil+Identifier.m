@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
-#import <AdSupport/AdSupport.h>
+//#import <AdSupport/AdSupport.h>
 #import "TFBaseUtil+Identifier.h"
 
 #define kIsStringValid(text) (text && text!=NULL && text.length>0)
