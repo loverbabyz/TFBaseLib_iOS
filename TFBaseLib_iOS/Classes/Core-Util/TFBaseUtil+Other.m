@@ -7,7 +7,7 @@
 //
 
 #import "TFBaseUtil+Other.h"
-
+#import "TFBaseUtil+Other.h"
 
 BOOL tf_isEmpty(NSString *string)
 {

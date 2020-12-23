@@ -9,19 +9,19 @@
 #ifndef TFBaseLibManager_h
 #define TFBaseLibManager_h
 
-#import <TFBaseLib_iOS/TFApplePayManager.h>
-#import <TFBaseLib_iOS/TFBluetoothManager.h>
-#import <TFBaseLib_iOS/TFDownloadManager.h>
-#import <TFBaseLib_iOS/TFFileManager.h>
-#import <TFBaseLib_iOS/TFGCDTimerManager.h>
-#import <TFBaseLib_iOS/TFHTTPRequestManager.h>
-#import <TFBaseLib_iOS/TFLocationManager.h>
-#import <TFBaseLib_iOS/TFLogManager.h>
-#import <TFBaseLib_iOS/TFNetworkManager.h>
-#import <TFBaseLib_iOS/TFPermissionManager.h>
-#import <TFBaseLib_iOS/TFPhotosManager.h>
-#import <TFBaseLib_iOS/TFTouchIDManager.h>
-#import <TFBaseLib_iOS/TFUploadManager.h>
-#import <TFBaseLib_iOS/TFRouterManager.h>
+#import "TFApplePayManager.h"
+#import "TFBluetoothManager.h"
+#import "TFDownloadManager.h"
+#import "TFFileManager.h"
+#import "TFGCDTimerManager.h"
+#import "TFHTTPRequestManager.h"
+#import "TFLocationManager.h"
+#import "TFLogManager.h"
+#import "TFNetworkManager.h"
+#import "TFPermissionManager.h"
+#import "TFPhotosManager.h"
+#import "TFTouchIDManager.h"
+#import "TFUploadManager.h"
+#import "TFRouterManager.h"
 
 #endif

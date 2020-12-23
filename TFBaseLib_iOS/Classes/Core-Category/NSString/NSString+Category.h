@@ -6,10 +6,10 @@
 //  Copyright (c) daniel.xiaofei@gmail.com All rights reserved.
 //
 
-#import <TFBaseLib_iOS/NSString+Ext.h>
-#import <TFBaseLib_iOS/NSString+STRegex.h>
-#import <TFBaseLib_iOS/NSString+HTML.h>
-#import <TFBaseLib_iOS/NSString+Path.h>
-#import <TFBaseLib_iOS/NSString+URL.h>
-#import <TFBaseLib_iOS/NSString+TFEncrypt.h>
-#import <TFBaseLib_iOS/NSString+TFBase64.h>
+#import "NSString+Ext.h"
+#import "NSString+STRegex.h"
+#import "NSString+HTML.h"
+#import "NSString+Path.h"
+#import "NSString+URL.h"
+#import "NSString+TFEncrypt.h"
+#import "NSString+TFBase64.h"

@@ -9,24 +9,24 @@
 #ifndef TFBaseLibUtil_h
 #define TFBaseLibUtil_h
 
-#import <TFBaseLib_iOS/TFBaseUtil.h>
-#import <TFBaseLib_iOS/TFBaseUtil+AES.h>
-#import <TFBaseLib_iOS/TFBaseUtil+App.h>
-#import <TFBaseLib_iOS/TFBaseUtil+Cache.h>
-#import <TFBaseLib_iOS/TFBaseUtil+Camera.h>
-#import <TFBaseLib_iOS/TFBaseUtil+Degrees.h>
-#import <TFBaseLib_iOS/TFBaseUtil+Float.h>
-#import <TFBaseLib_iOS/TFBaseUtil+Font.h>
-#import <TFBaseLib_iOS/TFBaseUtil+Identifier.h>
-#import <TFBaseLib_iOS/TFBaseUtil+Image.h>
-#import <TFBaseLib_iOS/TFBaseUtil+MD5.h>
-#import <TFBaseLib_iOS/TFBaseUtil+Null.h>
-#import <TFBaseLib_iOS/TFBaseUtil+Paste.h>
-#import <TFBaseLib_iOS/TFBaseUtil+System.h>
-#import <TFBaseLib_iOS/TFBaseUtil+Tel.h>
-#import <TFBaseLib_iOS/TFBaseUtil+URL.h>
-#import <TFBaseLib_iOS/TFBaseUtil+Other.h>
-#import <TFBaseLib_iOS/TFBaseUtil+Valid.h>
+#import "TFBaseUtil.h"
+#import "TFBaseUtil+AES.h"
+#import "TFBaseUtil+App.h"
+#import "TFBaseUtil+Cache.h"
+#import "TFBaseUtil+Camera.h"
+#import "TFBaseUtil+Degrees.h"
+#import "TFBaseUtil+Float.h"
+#import "TFBaseUtil+Font.h"
+#import "TFBaseUtil+Identifier.h"
+#import "TFBaseUtil+Image.h"
+#import "TFBaseUtil+MD5.h"
+#import "TFBaseUtil+Null.h"
+#import "TFBaseUtil+Paste.h"
+#import "TFBaseUtil+System.h"
+#import "TFBaseUtil+Tel.h"
+#import "TFBaseUtil+URL.h"
+#import "TFBaseUtil+Other.h"
+#import "TFBaseUtil+Valid.h"
 
 
 #endif

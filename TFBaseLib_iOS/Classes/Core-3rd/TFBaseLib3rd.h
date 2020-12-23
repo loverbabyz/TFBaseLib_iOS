@@ -9,8 +9,8 @@
 #ifndef TFBaseLib3rd_h
 #define TFBaseLib3rd_h
 
-#import <TFBaseLib_iOS/SafeKitCore.h>
-#import <TFBaseLib_iOS/NSMutableArray+SafeKitMRC.h>
-#import <TFBaseLib_iOS/DeepLinkKit.h>
+#import "SafeKitCore.h"
+#import "NSMutableArray+SafeKitMRC.h"
+#import "DeepLinkKit.h"
 
 #endif

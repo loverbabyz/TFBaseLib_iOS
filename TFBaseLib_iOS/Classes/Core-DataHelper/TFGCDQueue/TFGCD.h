@@ -10,10 +10,10 @@
 //  Copyright © 2016年 daniel.xiaofei@gmail.com All rights reserved.
 //
 
-#import <TFBaseLib_iOS/TFGCDQueue.h>
-#import <TFBaseLib_iOS/TFGCDGroup.h>
-#import <TFBaseLib_iOS/TFGCDSemaphore.h>
-#import <TFBaseLib_iOS/TFGCDTimer.h>
+#import "TFGCDQueue.h"
+#import "TFGCDGroup.h"
+#import "TFGCDSemaphore.h"
+#import "TFGCDTimer.h"
 
 /*
  

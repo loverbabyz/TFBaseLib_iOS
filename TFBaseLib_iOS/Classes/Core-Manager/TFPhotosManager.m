@@ -7,6 +7,7 @@
 //
 
 #import "TFPhotosManager.h"
+#import "TFBaseMacro+Other.h"
 
 #import <Photos/Photos.h>
 

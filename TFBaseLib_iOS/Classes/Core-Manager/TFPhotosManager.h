@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "TFBaseMacro+Other.h"
 
 #define kPhotosManager ([TFPhotosManager sharedManager])
 
@@ -35,7 +34,7 @@ typedef enum : NSUInteger {
 /**
  授权状态检测回调
  */
-- (void)authorizationStatusBlock:(IntegerMsgBlock)block;
+- (void)authorizationStatusBlock:(void (^)(NSInteger resultNumber, NSString *errorMsg))block;
 /**
  获取已保存到相册的照片/视频
  

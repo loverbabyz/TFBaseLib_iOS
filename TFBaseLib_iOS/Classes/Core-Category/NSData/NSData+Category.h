@@ -6,9 +6,9 @@
 //  Copyright (c) daniel.xiaofei@gmail.com All rights reserved.
 //
 
-#import <TFBaseLib_iOS/NSData+Ext.h>
-#import <TFBaseLib_iOS/NSData+TFEncrypt.h>
-#import <TFBaseLib_iOS/NSData+TFBase64.h>
+#import "NSData+Ext.h"
+#import "NSData+TFEncrypt.h"
+#import "NSData+TFBase64.h"
 
 
 

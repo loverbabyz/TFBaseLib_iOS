@@ -10,7 +10,7 @@
 #import <UIKit/UIKit.h>
 #import <objc/runtime.h>
 #import "Aspects.h"
-#import <TFBaseLib_iOS/TFBaseLib_iOS.h>
+#import "TFBaseLib_iOS.h"
 
 #import "DeepLinkKit.h"
 //#import "DPLDeepLink+AppLinks.h"

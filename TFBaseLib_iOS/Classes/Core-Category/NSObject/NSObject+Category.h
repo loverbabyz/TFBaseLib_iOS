@@ -7,7 +7,7 @@
 //
 
 
-#import <TFBaseLib_iOS/NSObject+Ext.h>
-#import <TFBaseLib_iOS/NSObject+Converter.h>
+#import "NSObject+Ext.h"
+#import "NSObject+Converter.h"
 
 

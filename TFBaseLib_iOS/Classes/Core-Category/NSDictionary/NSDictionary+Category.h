@@ -6,8 +6,8 @@
 //  Copyright (c) daniel.xiaofei@gmail.com All rights reserved.
 //
 
-#import <TFBaseLib_iOS/NSDictionary+Ext.h>
-#import <TFBaseLib_iOS/NSMutableDictionary+Ext.h>
+#import "NSDictionary+Ext.h"
+#import "NSMutableDictionary+Ext.h"
 
 
 

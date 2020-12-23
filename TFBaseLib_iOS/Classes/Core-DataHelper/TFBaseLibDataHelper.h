@@ -9,8 +9,8 @@
 #ifndef TFUILibCustomControl_h
 #define TFUILibCustomControl_h
 
-#import <TFBaseLib_iOS/TFGCD.h>
-#import <TFBaseLib_iOS/TFKeyChain.h>
-#import <TFBaseLib_iOS/TFUserDefaults.h>
+#import "TFGCD.h"
+#import "TFKeyChain.h"
+#import "TFUserDefaults.h"
 
 #endif

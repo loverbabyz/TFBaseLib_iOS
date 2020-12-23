@@ -9,11 +9,11 @@
 #ifndef TFBaseLibMacro_h
 #define TFBaseLibMacro_h
 
-#import <TFBaseLib_iOS/TFBaseMacro+Singleton.h>
-#import <TFBaseLib_iOS/TFBaseMacro+Log.h>
-#import <TFBaseLib_iOS/TFBaseMacro+Memory.h>
-#import <TFBaseLib_iOS/TFBaseMacro+System.h>
-#import <TFBaseLib_iOS/TFBaseMacro+Path.h>
-#import <TFBaseLib_iOS/TFBaseMacro+Other.h>
+#import "TFBaseMacro+Singleton.h"
+#import "TFBaseMacro+Log.h"
+#import "TFBaseMacro+Memory.h"
+#import "TFBaseMacro+System.h"
+#import "TFBaseMacro+Path.h"
+#import "TFBaseMacro+Other.h"
 
 #endif  

@@ -17,9 +17,9 @@ FOUNDATION_EXPORT const unsigned char TFBaseLibVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <TFBaseLib_iOS/PublicHeader.h>
 
-#import <TFBaseLib_iOS/TFBaseLib3rd.h>
-#import <TFBaseLib_iOS/TFBaseLibCategory.h>
-#import <TFBaseLib_iOS/TFBaseLibDataHelper.h>
-#import <TFBaseLib_iOS/TFBaseLibMacro.h>
-#import <TFBaseLib_iOS/TFBaseLibManager.h>
-#import <TFBaseLib_iOS/TFBaseLibUtil.h>
+#import "TFBaseLib3rd.h"
+#import "TFBaseLibCategory.h"
+#import "TFBaseLibDataHelper.h"
+#import "TFBaseLibMacro.h"
+#import "TFBaseLibManager.h"
+#import "TFBaseLibUtil.h"
