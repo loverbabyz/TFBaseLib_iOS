@@ -15,6 +15,7 @@
 
 #import "NSData+Ext.h"
 #import "NSString+Path.h"
+#import "NSDictionary+Ext.h"
 
 #import "TFBaseUtil+Other.h"
 
@@ -178,20 +179,7 @@
 
 + (id)jsonDataFromFileName:(NSString *)fileName
 {
-    NSString *jsonString = [NSString contentsOfFile:fileName];
-    NSData* data = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
-    if (data==nil)
-    {
-        return nil;
-    }
-    
-    __autoreleasing NSError* error = nil;
-    id result = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-    if (error != nil)
-    {
-        return nil;
-    }
-    return result;
+    return [NSDictionary dictionaryWithJsonString:[NSString contentsOfFile:fileName]];;
 }
 
 /**
