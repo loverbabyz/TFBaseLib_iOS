@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'TFBaseLib_iOS'
-  s.version          = '1.1.1'
+  s.version          = '1.1.2'
   s.summary          = 'Base lib for Treasure framework'
 
 # This description is used to generate tags and improve search results.
