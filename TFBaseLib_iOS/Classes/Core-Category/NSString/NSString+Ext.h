@@ -88,13 +88,6 @@
 - (BOOL)isEmpty;
 
 /**
- *  判断去掉两边的空格后是否是空串
- *
- *  @return YES表示是空串，NO表示非空
- */
-- (BOOL)isTrimEmpty;
-
-/**
  @brief     是否符合最小长度、最长长度，是否包含中文,首字母是否可以为数字
  @param     minLenth 账号最小长度
  @param     maxLenth 账号最长长度

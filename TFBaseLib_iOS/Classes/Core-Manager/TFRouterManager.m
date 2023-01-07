@@ -10,7 +10,7 @@
 #import <UIKit/UIKit.h>
 #import <objc/runtime.h>
 #import "Aspects.h"
-#import "TFBaseUtil+Other.h"
+#import "NSString+Ext.h"
 #import "DeepLinkKit.h"
 
 @interface TFRouterManager()
@@ -139,7 +139,7 @@ BOOL dynamicMethod2_router(id _self, SEL cmd,UIApplication *application ,NSURL *
     [configDict enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, NSDictionary *dict, BOOL * _Nonnull stop) {
         NSString *route = [dict objectForKey:routeKey];
         NSString *handler = key;
-        if(tf_isEmpty(route) || tf_isEmpty(handler)) {
+        if([route isEmpty] || [handler isEmpty]) {
             return;
         }
         

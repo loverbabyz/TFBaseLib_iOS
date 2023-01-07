@@ -7,7 +7,6 @@
 //
 
 #import "TFLogManager.h"
-#import "NSString+TFEncrypt.h"
 #import "NSDictionary+Ext.h"
 
 #define DD_LEGACY_MACROS 0

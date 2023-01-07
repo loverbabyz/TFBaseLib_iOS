@@ -17,8 +17,6 @@
 #import "NSString+Path.h"
 #import "NSDictionary+Ext.h"
 
-#import "TFBaseUtil+Other.h"
-
 @implementation NSString (Ext)
 
 - (NSString *)trimLeft
@@ -99,12 +97,24 @@
 
 - (BOOL)isEmpty
 {
-    return tf_isEmpty(self);
-}
-
-- (BOOL)isTrimEmpty
-{
-    return self == nil || self.trim.length == 0;
+    if (!self || [self isEqual:[NSNull null]])
+    {
+        return YES;
+    }
+    else
+    {
+        NSCharacterSet *set = [NSCharacterSet whitespaceAndNewlineCharacterSet];
+        NSString *trimedString = [self stringByTrimmingCharactersInSet:set];
+        
+        if ([trimedString length] == 0 || [trimedString isEqualToString:@"(null)"])
+        {
+            return YES;
+        }
+        else
+        {
+            return NO;
+        }
+    }
 }
 
 - (BOOL)isValidWithMinLenth:(NSInteger)minLenth

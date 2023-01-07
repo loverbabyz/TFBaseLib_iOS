@@ -7,15 +7,13 @@
 //
 
 #import "TFPhotosManager.h"
-#import "TFBaseMacro+Other.h"
-
 #import <Photos/Photos.h>
 
 @interface TFPhotosManager()
 
 @property (nonatomic, strong) NSString *plistName;
 @property (nonatomic, strong) NSString *folderName;
-@property (nonatomic, copy) IntegerMsgBlock authorizationBlock;
+@property (nonatomic, copy) void (^authorizationBlock)(NSInteger resultNumber, NSString *errorMsg);
 
 @end
 
@@ -59,7 +57,7 @@
     return self;
 }
 
-- (void)authorizationStatusBlock:(IntegerMsgBlock)block {
+- (void)authorizationStatusBlock:(void (^)(NSInteger resultNumber, NSString *errorMsg))block {
     self.authorizationBlock = block;
 }
 
