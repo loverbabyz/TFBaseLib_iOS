@@ -2,7 +2,7 @@
 //  TFLogManager.m
 //  TFBaseLib
 //
-//  Created by xiayiyong on 15/11/4.
+//  Created by Daniel on 15/11/4.
 //  Copyright (c) daniel.xiaofei@gmail.com All rights reserved.
 //
 

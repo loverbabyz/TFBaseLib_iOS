@@ -2,7 +2,7 @@
 //  NSString+Regular.h
 //  TWApp
 //
-//  Created by xiayiyong on 15/7/1.
+//  Created by Daniel on 15/7/1.
 //  Copyright (c) daniel.xiaofei@gmail.com All rights reserved.
 //
 

@@ -2,7 +2,7 @@
 //  NSString+TFBase64.m
 //  Treasure
 //
-//  Created by xiayiyong on 15/9/9.
+//  Created by Daniel on 15/9/9.
 //  Copyright (c) daniel.xiaofei@gmail.com All rights reserved.
 //
 

@@ -108,7 +108,7 @@ Base lib for Treasure framework
     sss.public_header_files = 'TFBaseLib_iOS/Classes/Core-DataHelper/TFGCDQueue/*.h'
     end
 
-    ss.dependency 'AutoCoding', '2.2.3'
+    ss.dependency 'AutoCoding'
 
   end
 
@@ -123,8 +123,8 @@ Base lib for Treasure framework
     ss.source_files = 'TFBaseLib_iOS/Classes/Core-Manager/*.{h,m}'
     ss.public_header_files = 'TFBaseLib_iOS/Classes/Core-Manager/*.h'
 
-    ss.dependency 'AFNetworking', '4.0.1'
-    ss.dependency 'CocoaLumberjack', '3.6.1'
+    ss.dependency 'AFNetworking'
+    ss.dependency 'CocoaLumberjack'
   end
 
   s.subspec 'Core-Util' do |ss|
@@ -133,10 +133,10 @@ Base lib for Treasure framework
   ss.public_header_files = 'TFBaseLib_iOS/Classes/Core-Util/*.h'
   end
 
-  s.dependency  'FMDB', '2.7.5'
-  s.dependency  'Aspects','1.4.1'
-  s.dependency  'SAMKeychain', '1.5.3'
-  s.dependency  'ObjcAssociatedObjectHelpers','2.0.1'
-  s.dependency  'MJExtension', '3.2.1'
+  s.dependency  'FMDB'
+  s.dependency  'Aspects'
+  s.dependency  'SAMKeychain'
+  s.dependency  'ObjcAssociatedObjectHelpers'
+  s.dependency  'MJExtension'
   
 end

@@ -10,9 +10,8 @@
 #import <UIKit/UIKit.h>
 #import <objc/runtime.h>
 #import "Aspects.h"
-
+#import "TFBaseUtil+Other.h"
 #import "DeepLinkKit.h"
-//#import "DPLDeepLink+AppLinks.h"
 
 @interface TFRouterManager()
 

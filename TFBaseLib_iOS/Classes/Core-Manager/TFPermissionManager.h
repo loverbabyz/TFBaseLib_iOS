@@ -2,7 +2,7 @@
 //  TFPermissionManager.h
 //  TFBaseLib
 //
-//  Created by xiayiyong on 16/3/2.
+//  Created by Daniel on 16/3/2.
 //  Copyright © 2016年 daniel.xiaofei@gmail.com All rights reserved.
 //
 

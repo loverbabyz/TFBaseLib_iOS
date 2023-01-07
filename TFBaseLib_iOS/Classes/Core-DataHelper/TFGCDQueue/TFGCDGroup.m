@@ -2,7 +2,7 @@
 //  TFGCDGroup.m
 //  TFBaseLib
 //
-//  Created by xiayiyong on 16/3/3.
+//  Created by Daniel on 16/3/3.
 //  Copyright © 2016年 daniel.xiaofei@gmail.com All rights reserved.
 //
 

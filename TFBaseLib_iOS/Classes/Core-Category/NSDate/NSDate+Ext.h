@@ -2,7 +2,7 @@
 //  NSDate+CX.h
 //  Treasure
 //
-//  Created by xiayiyong on 15/8/18.
+//  Created by Daniel on 15/8/18.
 //  Copyright (c) daniel.xiaofei@gmail.com All rights reserved.
 //
 

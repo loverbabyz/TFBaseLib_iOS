@@ -2,7 +2,7 @@
 //  TFBaseUtil+Other.h
 //  TFBaseLib
 //
-//  Created by xiayiyong on 16/2/4.
+//  Created by Daniel on 16/2/4.
 //  Copyright © 2016年 daniel.xiaofei@gmail.com All rights reserved.
 //
 

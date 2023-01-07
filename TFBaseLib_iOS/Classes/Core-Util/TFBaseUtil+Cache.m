@@ -2,7 +2,7 @@
 //  TFBaseUtil+Cache.m
 //  TFBaseLib
 //
-//  Created by xiayiyong on 15/10/14.
+//  Created by Daniel on 15/10/14.
 //  Copyright (c) daniel.xiaofei@gmail.com All rights reserved.
 //
 

@@ -2,11 +2,10 @@
 //  TFBaseUtil+Other.m
 //  TFBaseLib
 //
-//  Created by xiayiyong on 16/2/4.
+//  Created by Daniel on 16/2/4.
 //  Copyright © 2016年 daniel.xiaofei@gmail.com All rights reserved.
 //
 
-#import "TFBaseUtil+Other.h"
 #import "TFBaseUtil+Other.h"
 
 BOOL tf_isEmpty(NSString *string)
