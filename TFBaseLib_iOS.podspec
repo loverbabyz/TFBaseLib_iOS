@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'TFBaseLib_iOS'
-  s.version          = '1.1.4'
+  s.version          = '1.1.5'
   s.summary          = 'Base lib for Treasure framework'
 
 # This description is used to generate tags and improve search results.
@@ -53,84 +53,43 @@ Base lib for Treasure framework
   s.frameworks = "Foundation", "UIKit", "CoreGraphics", "CoreData", "CoreText", "CoreTelephony", "CoreLocation", "Security", "ImageIO", "QuartzCore", "SystemConfiguration", "Photos", "CoreBluetooth", "AVFoundation", "Contacts", "LocalAuthentication", "CoreServices", "AssetsLibrary", "AddressBook"
   
   s.subspec 'Core-3rd' do |ss|
-  ss.platform = :ios
-  ss.source_files = 'TFBaseLib_iOS/Classes/Core-3rd/*.{h,m}'
-  ss.public_header_files = 'TFBaseLib_iOS/Classes/Core-3rd/*.h'
-
-    ss.subspec 'SafeKit' do |sss|
-    sss.platform = :ios
-    sss.source_files = 'TFBaseLib_iOS/Classes/Core-3rd/SafeKit/*.{h,m}'
-    sss.public_header_files = 'TFBaseLib_iOS/Classes/Core-3rd/SafeKit/*.h'
-    end
-
-    ss.subspec 'SafeKitMRC' do |sss|
-    sss.platform = :ios
-    sss.requires_arc = false
-    sss.compiler_flags = '-ObjC'
-    sss.source_files = 'TFBaseLib_iOS/Classes/Core-3rd/SafeKitMRC/*.{h,m}'
-    sss.public_header_files = 'TFBaseLib_iOS/Classes/Core-3rd/SafeKitMRC/*.h'
-    end
-    
-    ss.subspec 'DeepLinkKit' do |sss|
-    sss.platform = :ios
-    sss.source_files = 'TFBaseLib_iOS/Classes/Core-3rd/DeepLinkKit/**/*.{h,m}'
-    sss.public_header_files = 'TFBaseLib_iOS/Classes/Core-3rd/DeepLinkKit/**/*.h'
-    end
-
+      ss.platform = :ios
+      ss.source_files = 'TFBaseLib_iOS/Classes/Core-3rd/**/*.{h,m}'
+      ss.public_header_files = 'TFBaseLib_iOS/Classes/Core-3rd/**/*.h'
   end
 
   s.subspec 'Core-Category' do |ss|
-  ss.platform = :ios
-  ss.source_files = 'TFBaseLib_iOS/Classes/Core-Category/**/*.{h,m}'
-  ss.public_header_files = 'TFBaseLib_iOS/Classes/Core-Category/**/*.h'
+      ss.platform = :ios
+      ss.source_files = 'TFBaseLib_iOS/Classes/Core-Category/**/*.{h,m}'
+      ss.public_header_files = 'TFBaseLib_iOS/Classes/Core-Category/**/*.h'
   end
 
   s.subspec 'Core-DataHelper' do |ss|
-  ss.platform = :ios
-  ss.source_files = 'TFBaseLib_iOS/Classes/Core-DataHelper/*.{h,m}'
-  ss.public_header_files = 'TFBaseLib_iOS/Classes/Core-DataHelper/*.h'
-
-    ss.subspec 'TFUserDefaults' do |sss|
-    sss.platform = :ios
-    sss.source_files = 'TFBaseLib_iOS/Classes/Core-DataHelper/TFUserDefaults/*.{h,m}'
-    sss.public_header_files = 'TFBaseLib_iOS/Classes/Core-DataHelper/TFUserDefaults/*.h'
-    end
-
-    ss.subspec 'TFKeyChain' do |sss|
-    sss.platform = :ios
-    sss.source_files = 'TFBaseLib_iOS/Classes/Core-DataHelper/TFKeyChain/*.{h,m}'
-    sss.public_header_files = 'TFBaseLib_iOS/Classes/Core-DataHelper/TFKeyChain/*.h'
-    end
-
-    ss.subspec 'TFGCDQueue' do |sss|
-    sss.platform = :ios
-    sss.source_files = 'TFBaseLib_iOS/Classes/Core-DataHelper/TFGCDQueue/*.{h,m}'
-    sss.public_header_files = 'TFBaseLib_iOS/Classes/Core-DataHelper/TFGCDQueue/*.h'
-    end
-
-    ss.dependency 'AutoCoding'
-
+      ss.platform = :ios
+      ss.source_files = 'TFBaseLib_iOS/Classes/Core-DataHelper/**/*.{h,m}'
+      ss.public_header_files = 'TFBaseLib_iOS/Classes/Core-DataHelper/**/*.h'
+      ss.dependency 'AutoCoding'
   end
 
   s.subspec 'Core-Macro' do |ss|
-  ss.platform = :ios
-  ss.source_files = 'TFBaseLib_iOS/Classes/Core-Macro/*.{h,m}'
-  ss.public_header_files = 'TFBaseLib_iOS/Classes/Core-Macro/*.h'
+      ss.platform = :ios
+      ss.source_files = 'TFBaseLib_iOS/Classes/Core-Macro/*.{h,m}'
+      ss.public_header_files = 'TFBaseLib_iOS/Classes/Core-Macro/*.h'
   end
 
   s.subspec 'Core-Manager' do |ss|
-    ss.platform = :ios
-    ss.source_files = 'TFBaseLib_iOS/Classes/Core-Manager/*.{h,m}'
-    ss.public_header_files = 'TFBaseLib_iOS/Classes/Core-Manager/*.h'
+      ss.platform = :ios
+      ss.source_files = 'TFBaseLib_iOS/Classes/Core-Manager/*.{h,m}'
+      ss.public_header_files = 'TFBaseLib_iOS/Classes/Core-Manager/*.h'
 
-    ss.dependency 'AFNetworking'
-    ss.dependency 'CocoaLumberjack'
+      ss.dependency 'AFNetworking'
+      ss.dependency 'CocoaLumberjack'
   end
 
   s.subspec 'Core-Util' do |ss|
-  ss.platform = :ios
-  ss.source_files = 'TFBaseLib_iOS/Classes/Core-Util/*.{h,m}'
-  ss.public_header_files = 'TFBaseLib_iOS/Classes/Core-Util/*.h'
+      ss.platform = :ios
+      ss.source_files = 'TFBaseLib_iOS/Classes/Core-Util/*.{h,m}'
+      ss.public_header_files = 'TFBaseLib_iOS/Classes/Core-Util/*.h'
   end
 
   s.dependency  'FMDB'
