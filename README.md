@@ -4,5 +4,5 @@ Treasure Framework之Base组件：集合了iOS开发底层的扩展和帮助类�
 using [CocoaPods](https://cocoapods.org/):
 
 ```ruby
-pod 'TFUILib_iOS'
+pod 'TFBaseLib_iOS'
 ```
