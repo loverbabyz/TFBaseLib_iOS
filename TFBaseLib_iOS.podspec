@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'TFBaseLib_iOS'
-  s.version          = '1.1.7'
+  s.version          = '1.1.8'
   s.summary          = 'Base lib for Treasure framework'
 
 # This description is used to generate tags and improve search results.
@@ -31,10 +31,10 @@ Base lib for Treasure framework
   s.ios.deployment_target = '10.0'
   s.requires_arc = true
 
-  # s.source_files = 'TFBaseLib_iOS/Classes/**/*'
+  s.source_files = 'TFBaseLib_iOS/Classes/**/*'
   
-  s.source_files = 'TFBaseLib_iOS/Classes/TFBaseLib_iOS.h'
-  s.public_header_files = 'TFBaseLib_iOS/Classes/TFBaseLib_iOS.h'
+#  s.source_files = 'TFBaseLib_iOS/Classes/TFBaseLib_iOS.h'
+#  s.public_header_files = 'TFBaseLib_iOS/Classes/TFBaseLib_iOS.h'
 
   # s.resource = 'TFBaseLib_iOS/Assets/*.bundle'
   
@@ -54,51 +54,14 @@ Base lib for Treasure framework
   s.xcconfig = {
       'OTHER_LDFLAGS' => '-ObjC -all_load -force_load'
   }
-  
-  s.subspec 'Core-3rd' do |ss|
-      ss.platform = :ios
-      ss.source_files = 'TFBaseLib_iOS/Classes/Core-3rd/**/*.{h,m}'
-      ss.public_header_files = 'TFBaseLib_iOS/Classes/Core-3rd/**/*.h'
-  end
 
-  s.subspec 'Core-Category' do |ss|
-      ss.platform = :ios
-      ss.source_files = 'TFBaseLib_iOS/Classes/Core-Category/**/*.{h,m}'
-      ss.public_header_files = 'TFBaseLib_iOS/Classes/Core-Category/**/*.h'
-  end
-
-  s.subspec 'Core-DataHelper' do |ss|
-      ss.platform = :ios
-      ss.source_files = 'TFBaseLib_iOS/Classes/Core-DataHelper/**/*.{h,m}'
-      ss.public_header_files = 'TFBaseLib_iOS/Classes/Core-DataHelper/**/*.h'
-      ss.dependency 'AutoCoding'
-  end
-
-  s.subspec 'Core-Macro' do |ss|
-      ss.platform = :ios
-      ss.source_files = 'TFBaseLib_iOS/Classes/Core-Macro/*.{h,m}'
-      ss.public_header_files = 'TFBaseLib_iOS/Classes/Core-Macro/*.h'
-  end
-
-  s.subspec 'Core-Manager' do |ss|
-      ss.platform = :ios
-      ss.source_files = 'TFBaseLib_iOS/Classes/Core-Manager/*.{h,m}'
-      ss.public_header_files = 'TFBaseLib_iOS/Classes/Core-Manager/*.h'
-
-      ss.dependency 'AFNetworking'
-      ss.dependency 'CocoaLumberjack'
-  end
-
-  s.subspec 'Core-Util' do |ss|
-      ss.platform = :ios
-      ss.source_files = 'TFBaseLib_iOS/Classes/Core-Util/*.{h,m}'
-      ss.public_header_files = 'TFBaseLib_iOS/Classes/Core-Util/*.h'
-  end
-
-  s.dependency  'FMDB'
-  s.dependency  'Aspects'
-  s.dependency  'SAMKeychain'
-  s.dependency  'ObjcAssociatedObjectHelpers'
-  s.dependency  'MJExtension'
+  s.dependency 'AutoCoding'
+  s.dependency 'AFNetworking'
+  s.dependency 'CocoaLumberjack'
+  s.dependency 'FMDB'
+  s.dependency 'Aspects'
+  s.dependency 'SAMKeychain'
+  s.dependency 'ObjcAssociatedObjectHelpers'
+  s.dependency 'MJExtension'
   
 end
