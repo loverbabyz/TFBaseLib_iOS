@@ -82,7 +82,7 @@
             // 视频
             if (phAsset.mediaType == PHAssetMediaTypeVideo) {
                 PHVideoRequestOptions *options = [[PHVideoRequestOptions alloc] init];
-                options.version = PHImageRequestOptionsVersionCurrent;
+                options.version = (PHVideoRequestOptionsVersion)PHImageRequestOptionsVersionCurrent;
                 options.deliveryMode = PHVideoRequestOptionsDeliveryModeAutomatic;
                 
                 [[PHImageManager defaultManager] requestAVAssetForVideo:phAsset

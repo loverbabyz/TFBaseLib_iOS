@@ -405,7 +405,7 @@
     }
     
     if (placeholder.length == 0) {
-        placeholder == @" ";
+        placeholder = @" ";
     }
     
     NSNumber * number = [NSNumber numberWithInteger:[string integerValue]];
