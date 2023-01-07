@@ -32,9 +32,8 @@ Base lib for Treasure framework
   s.requires_arc = true
 
   s.source_files = 'TFBaseLib_iOS/Classes/**/*'
-  
-#  s.source_files = 'TFBaseLib_iOS/Classes/TFBaseLib_iOS.h'
-#  s.public_header_files = 'TFBaseLib_iOS/Classes/TFBaseLib_iOS.h'
+  # s.source_files = 'TFBaseLib_iOS/Classes/TFBaseLib_iOS.h'
+  # s.public_header_files = 'TFBaseLib_iOS/Classes/TFBaseLib_iOS.h'
 
   # s.resource = 'TFBaseLib_iOS/Assets/*.bundle'
   
@@ -48,7 +47,7 @@ Base lib for Treasure framework
   # s.resources = "TFBaseLib/Resources/**/*.{bundle}"
   
   s.ios.libraries = "stdc++", "sqlite3"
-#  s.ios.vendored_frameworks = "TFBaseLib_iOS/Classes/3rd-framework/**/*.{framework}"
+  # s.ios.vendored_frameworks = "TFBaseLib_iOS/Classes/3rd-framework/**/*.{framework}"
 
   s.frameworks = "Foundation", "UIKit", "CoreGraphics", "CoreData", "CoreText", "CoreTelephony", "CoreLocation", "Security", "ImageIO", "QuartzCore", "SystemConfiguration", "Photos", "CoreBluetooth", "AVFoundation", "Contacts", "LocalAuthentication", "CoreServices", "AssetsLibrary", "AddressBook"
   s.xcconfig = {
