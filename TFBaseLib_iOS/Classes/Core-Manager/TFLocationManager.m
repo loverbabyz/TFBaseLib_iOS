@@ -91,7 +91,7 @@ TFSingletonM(Manager)
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
         self.locationManager.delegate = self;
         
-        if ([SYSTEM_VERSION floatValue] >= 8)
+        if ([TF_SYSTEM_VERSION floatValue] >= 8)
         {
 //            [self.locationManager requestAlwaysAuthorization];  // 始终允许访问位置信息
             [self.locationManager requestWhenInUseAuthorization];  // 使用应用程序期间允许访问位置数据

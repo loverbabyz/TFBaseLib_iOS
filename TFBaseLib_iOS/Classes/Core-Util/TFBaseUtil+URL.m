@@ -24,12 +24,12 @@ void tf_openURL(NSString* urlString)
 //打开URL
 +(BOOL)canOpenURL:(NSString*)urlString
 {
-    return [APP_APPLICATION canOpenURL:[NSURL URLWithString:urlString]];
+    return [TF_APP_APPLICATION canOpenURL:[NSURL URLWithString:urlString]];
 }
 
 +(void)openURL:(NSString*)urlString
 {
-    [APP_APPLICATION openURL:[NSURL URLWithString:urlString] options:@{} completionHandler:nil];
+    [TF_APP_APPLICATION openURL:[NSURL URLWithString:urlString] options:@{} completionHandler:nil];
 }
 
 

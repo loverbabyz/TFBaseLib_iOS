@@ -43,28 +43,17 @@ typedef void (^ObjectMsgBlock)(id result, NSString *errorMsg);
  *
  *  @return
  */
-#define IDLETIMERDISABLED(enable) [APP_APPLICATION setIdleTimerDisabled:enable]
-
-/**
- *  宽的缩放比例
- */
-#define WIDTH_SCALE (MAIN_SCREEN.bounds.size.width / 320.0)
-
-/**
- *  高的缩放比例
- *
- */
-#define HEIGHT_SCALE (MAIN_SCREEN.bounds.size.height / 568.0)
+#define TF_IDLETIMERDISABLED(enable) [APP_APPLICATION setIdleTimerDisabled:enable]
 
 /**
  *  创建数组
  */
-#define ARR(...) [NSArray arrayWithObjects:__VA_ARGS__, nil]
+#define TF_ARR(...) [NSArray arrayWithObjects:__VA_ARGS__, nil]
 
 /**
  *  创建动态数组
  */
-#define MARR(...) [NSMutableArray arrayWithObjects:__VA_ARGS__, nil]
+#define TF_MARR(...) [NSMutableArray arrayWithObjects:__VA_ARGS__, nil]
 
 /**
  *  创建字符串
@@ -80,7 +69,7 @@ typedef void (^ObjectMsgBlock)(id result, NSString *errorMsg);
  *
  *  @return 创建的通知
  */
-#define POST_NOTIFICATION(name, obj, info) [[NSNotificationCenter defaultCenter] postNotificationName:name object:obj userInfo:info];
+#define TF_POST_NOTIFICATION(name, obj, info) [[NSNotificationCenter defaultCenter] postNotificationName:name object:obj userInfo:info];
 
 /**
  *  判断是真机

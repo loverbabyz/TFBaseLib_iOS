@@ -13,17 +13,17 @@
 
 + (NSString *)documentPath
 {
-    return [APP_HOME_PATH stringByAppendingPathComponent:@"Documents"];
+    return [TF_APP_HOME_PATH stringByAppendingPathComponent:@"Documents"];
 }
 
 + (NSString *)tmpPath
 {
-    return [APP_HOME_PATH stringByAppendingPathComponent:@"tmp"];
+    return [TF_APP_HOME_PATH stringByAppendingPathComponent:@"tmp"];
 }
 
 + (NSString *)cachePath
 {
-    return [APP_HOME_PATH stringByAppendingPathComponent:@"Library/Caches"];
+    return [TF_APP_HOME_PATH stringByAppendingPathComponent:@"Library/Caches"];
 }
 
 + (NSString *)pathWithFileName:(NSString *)fileName
@@ -33,7 +33,7 @@
 
 + (NSString *)pathWithFileName:(NSString *)fileName ofType:(NSString *)type
 {
-    return [MAIN_BUNDLE pathForResource:fileName ofType:type];
+    return [TF_MAIN_BUNDLE pathForResource:fileName ofType:type];
 }
 
 @end

@@ -144,7 +144,7 @@ TFSingletonM(Manager)
 }
 
 - (void)schemeInfo {
-    NSDictionary *dict = [MAIN_BUNDLE infoDictionary];
+    NSDictionary *dict = [TF_MAIN_BUNDLE infoDictionary];
     NSArray *urlTypes = dict[@"CFBundleURLTypes"];
     
     for (NSDictionary *scheme in urlTypes) {
@@ -159,7 +159,7 @@ TFSingletonM(Manager)
 }
 
 - (NSDictionary *)_routerConfig {
-    NSString *path = [MAIN_BUNDLE pathForResource:@"RouterConfig" ofType:@"plist"];
+    NSString *path = [TF_MAIN_BUNDLE pathForResource:@"RouterConfig" ofType:@"plist"];
     
     return [NSDictionary dictionaryWithContentsOfFile:path];
 }

@@ -20,7 +20,7 @@
 {
     
     //ios7之前系统没有设置权限
-    if([SYSTEM_VERSION floatValue] < 7.0){
+    if([TF_SYSTEM_VERSION floatValue] < 7.0){
         completion(YES);
         return;
     }
@@ -74,7 +74,7 @@
 
 + (void)getPhotoPermission:(nonnull void(^)(BOOL allowed))completion
 {
-    if ([SYSTEM_VERSION floatValue] < 8.0)
+    if ([TF_SYSTEM_VERSION floatValue] < 8.0)
     {
         PHAuthorizationStatus authorizationStatus = [PHPhotoLibrary authorizationStatus];
         
@@ -208,7 +208,7 @@
     if (UIApplicationOpenSettingsURLString != NULL)
     {
         NSURL *appSettings = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
-        [APP_APPLICATION openURL:appSettings options:@{} completionHandler:nil];
+        [TF_APP_APPLICATION openURL:appSettings options:@{} completionHandler:nil];
     }
 }
 

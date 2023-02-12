@@ -576,7 +576,7 @@
 
 +(NSString *)pathForMainBundleDirectory
 {
-    return MAIN_BUNDLE.resourcePath;
+    return TF_MAIN_BUNDLE_RESOURCE;
 }
 
 

@@ -40,7 +40,7 @@ NSString * tf_appName()
 
 + (BOOL)hasLocalInstallApp:(NSString *)urlSchemes
 {
-    if ([APP_APPLICATION canOpenURL:[NSURL URLWithString:urlSchemes]])
+    if ([TF_APP_APPLICATION canOpenURL:[NSURL URLWithString:urlSchemes]])
     {
         return YES;
     }
@@ -50,7 +50,7 @@ NSString * tf_appName()
 
 + (BOOL)canOpenApp:(NSString *)itunesUrlString
 {
-    if ([APP_APPLICATION canOpenURL:[NSURL URLWithString:itunesUrlString]])
+    if ([TF_APP_APPLICATION canOpenURL:[NSURL URLWithString:itunesUrlString]])
     {
         return YES;
     }
@@ -62,7 +62,7 @@ NSString * tf_appName()
 {
     if ([self canOpenApp:urlSchemes])
     {
-        [APP_APPLICATION openURL:[NSURL URLWithString:urlSchemes] options:@{} completionHandler:nil];
+        [TF_APP_APPLICATION openURL:[NSURL URLWithString:urlSchemes] options:@{} completionHandler:nil];
     }
 }
 
@@ -71,14 +71,14 @@ NSString * tf_appName()
 #if TARGET_IPHONE_SIMULATOR
     NSLog(@"虚拟机不支持APP Store.打开iTunes不会有效果。");
 #else
-    [APP_APPLICATION openURL:[NSURL URLWithString:itunesUrlString] options:@{} completionHandler:nil];
+    [TF_APP_APPLICATION openURL:[NSURL URLWithString:itunesUrlString] options:@{} completionHandler:nil];
 #endif
     return;
 }
 
 + (NSString *)appName
 {
-    return [MAIN_BUNDLE objectForInfoDictionaryKey:@"CFBundleDisplayName"] ? [MAIN_BUNDLE objectForInfoDictionaryKey:@"CFBundleDisplayName"] : [MAIN_BUNDLE objectForInfoDictionaryKey:@"CFBundleName"];
+    return [TF_MAIN_BUNDLE objectForInfoDictionaryKey:@"CFBundleDisplayName"] ? [TF_MAIN_BUNDLE objectForInfoDictionaryKey:@"CFBundleDisplayName"] : [TF_MAIN_BUNDLE objectForInfoDictionaryKey:@"CFBundleName"];
 }
 
 @end

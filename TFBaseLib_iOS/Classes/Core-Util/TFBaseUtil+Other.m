@@ -28,12 +28,12 @@ BOOL tf_isContainsEmoji(NSString *string)
 
 +(void)idleTimerDisabled:(BOOL)enable
 {
-    APP_APPLICATION.idleTimerDisabled = enable;
+    TF_APP_APPLICATION.idleTimerDisabled = enable;
 }
 
 + (UIView *)getViewFromNib:(NSString *)className
 {
-    NSArray* nibView =  [MAIN_BUNDLE loadNibNamed:className owner:nil options:nil];
+    NSArray* nibView =  [TF_MAIN_BUNDLE loadNibNamed:className owner:nil options:nil];
     return [nibView objectAtIndex:0];
 }
 

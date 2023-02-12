@@ -44,35 +44,35 @@ BOOL tf_isLandscape(void)
 
 + (NSInteger)iOSVersion
 {
-    return [SYSTEM_VERSION integerValue];
+    return [TF_SYSTEM_VERSION integerValue];
 }
 
 + (BOOL)isiPad
 {
-    return CURREND_DEVICE.userInterfaceIdiom == UIUserInterfaceIdiomPad;
+    return TF_CURREND_DEVICE.userInterfaceIdiom == UIUserInterfaceIdiomPad;
 }
 
 + (BOOL)isiPhone
 {
-    return CURREND_DEVICE.userInterfaceIdiom == UIUserInterfaceIdiomPhone;
+    return TF_CURREND_DEVICE.userInterfaceIdiom == UIUserInterfaceIdiomPhone;
 }
 
 + (BOOL)isRetina
 {
-    return [MAIN_SCREEN respondsToSelector:@selector(displayLinkWithTarget:selector:)]
-    && (MAIN_SCREEN.scale == 2.0 || MAIN_SCREEN.scale == 3.0);
+    return [TF_MAIN_SCREEN respondsToSelector:@selector(displayLinkWithTarget:selector:)]
+    && (TF_MAIN_SCREEN.scale == 2.0 || TF_MAIN_SCREEN.scale == 3.0);
 }
 
 + (BOOL)isRetinaHD
 {
-    return [MAIN_SCREEN respondsToSelector:@selector(displayLinkWithTarget:selector:)]
-    && (MAIN_SCREEN.scale == 3.0);
+    return [TF_MAIN_SCREEN respondsToSelector:@selector(displayLinkWithTarget:selector:)]
+    && (TF_MAIN_SCREEN.scale == 3.0);
 }
 
 + (BOOL)isLandscape
 {
     return (UIInterfaceOrientationIsLandscape \
-            ([APP_APPLICATION statusBarOrientation]));
+            ([TF_APP_APPLICATION statusBarOrientation]));
 }
 
 @end
