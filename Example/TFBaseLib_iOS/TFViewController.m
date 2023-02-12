@@ -20,6 +20,9 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
+//    id keyWindow = APP_KEY_WINDOW();
+    id keyWindow = kTFBaseUtilKeyWindow;
+    
     NSURLSessionDataTask *task = [TFHTTPRequestManager doTaskWithURL:@"https://www.baidu.com" httpHeader:nil parameters:nil success:^(id data) {
         NSLog(@"%@", data);
     } failure:^(int errorCode, NSString *errorMessage) {

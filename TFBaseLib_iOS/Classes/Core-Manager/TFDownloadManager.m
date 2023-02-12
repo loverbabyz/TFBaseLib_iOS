@@ -22,15 +22,7 @@
 
 @implementation TFDownloadManager
 
-+ (instancetype)sharedManager
-{
-    static TFDownloadManager *sharedInstance=nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sharedInstance = [[TFDownloadManager alloc] init];
-    });
-    return sharedInstance;
-}
+TFSingletonM(Manager)
 
 - (NSMutableArray *)paths
 {

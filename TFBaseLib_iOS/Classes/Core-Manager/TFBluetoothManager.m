@@ -16,17 +16,7 @@
 
 @implementation TFBluetoothManager
 
-
-+ (instancetype) sharedManager
-{
-    static TFBluetoothManager *sharedInstance = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sharedInstance = [[TFBluetoothManager alloc] init];
-    });
-    
-    return sharedInstance;
-}
+TFSingletonM(Manager)
 
 - (instancetype)init
 {

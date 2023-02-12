@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TFBaseMacro+Singleton.h"
 
 typedef void(^DownloadProgress)(CGFloat progress, CGFloat totalMBRead, CGFloat totalMBExpectedToRead);
 
@@ -14,7 +15,7 @@ typedef void(^DownloadProgress)(CGFloat progress, CGFloat totalMBRead, CGFloat t
 
 #define kTFDownloadManager  ([TFDownloadManager sharedManager])
 
-+ (instancetype) sharedManager;
+TFSingletonH(Manager)
 
 #pragma mark - 类方法
 

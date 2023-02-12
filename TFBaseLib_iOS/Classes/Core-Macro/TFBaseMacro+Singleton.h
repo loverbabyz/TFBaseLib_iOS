@@ -1,5 +1,5 @@
 //
-//  TFMacro+Singleton.h
+//  TFBaseMacro+Singleton.h
 //  Treasure
 //
 //  Created by Daniel on 15/9/14.

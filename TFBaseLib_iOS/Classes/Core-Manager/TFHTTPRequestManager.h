@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TFBaseMacro+Singleton.h"
 
 @interface TFHTTPRequestManager : NSObject
 
@@ -35,7 +36,7 @@ typedef NS_ENUM(NSInteger, ResponseSerializerType)
     ResponseSerializerTypeCompound
 };
 
-+ (instancetype) sharedManager;
+TFSingletonH(Manager)
 
 //自动重连次数
 @property (nonatomic, assign) NSInteger reconnectNum;

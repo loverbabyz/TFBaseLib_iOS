@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreBluetooth/CoreBluetooth.h>
+#import "TFBaseMacro+Singleton.h"
 
 /**
  *  蓝牙状态变化时的回调
@@ -33,6 +34,6 @@ typedef void(^BluetoothStatusChangedBlock)(CBManagerState state);
 
 #define kTFBluetoothManager  ([TFBluetoothManager sharedManager])
 
-+ (instancetype) sharedManager;
+TFSingletonH(Manager)
 
 @end

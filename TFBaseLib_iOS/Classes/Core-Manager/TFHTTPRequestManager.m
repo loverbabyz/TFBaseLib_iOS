@@ -282,17 +282,7 @@ SYNTHESIZE_ASC_OBJ(__retryDelayCalcBlock, setRetryDelayCalcBlock);
 
 @implementation TFHTTPRequestManager
 
-+ (instancetype)sharedManager
-{
-    static TFHTTPRequestManager *instance = nil;
-    
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        instance = [[TFHTTPRequestManager alloc] initTaskPool];
-    });
-    
-    return instance;
-}
+TFSingletonM(Manager)
 
 #pragma mark -
 #pragma mark Init Methods

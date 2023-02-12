@@ -17,16 +17,7 @@
 
 #pragma mark - Public Method
 
-+ (instancetype)sharedInstance {
-    static TFGCDTimerManager *_gcdTimerManager = nil;
-    static dispatch_once_t onceToken;
-    
-    dispatch_once(&onceToken,^{
-        _gcdTimerManager = [[TFGCDTimerManager alloc] init];
-    });
-    
-    return _gcdTimerManager;
-}
+TFSingletonM(Manager)
 
 - (void)scheduledDispatchTimerWithName:(NSString *)timerName
                           timeInterval:(double)interval

@@ -6,6 +6,8 @@
 //  Copyright (c) daniel.xiaofei@gmail.com All rights reserved.
 //
 
+#import "TFBaseUtil.h"
+
 /**
  *  手机系统的版本
  */
@@ -27,9 +29,14 @@
 #define APP_SHORT_VERSION   [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
 
 /**
+ *  app的UIApplication
+ */
+#define APP_APPLICATION     [UIApplication sharedApplication]
+
+/**
  *  app的主window
  */
-#define APP_KEY_WINDOW   [[UIApplication sharedApplication] keyWindow]
+#define APP_KEY_WINDOW()     kTFBaseUtil.keyWindow
 
 /**
  *  app的delegate

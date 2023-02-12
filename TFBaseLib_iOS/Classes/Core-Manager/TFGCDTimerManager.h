@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TFBaseMacro+Singleton.h"
 
 typedef enum : NSUInteger {
     ActionOptionAbandonPreviousAction, // 废除之前的任务
@@ -15,7 +16,7 @@ typedef enum : NSUInteger {
 
 @interface TFGCDTimerManager : NSObject
 
-+ (instancetype)sharedInstance;
+TFSingletonH(Manager)
 
 /**
  启动一个timer，默认精度为0.1秒
