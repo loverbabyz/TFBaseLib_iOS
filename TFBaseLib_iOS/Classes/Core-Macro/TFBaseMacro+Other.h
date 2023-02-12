@@ -6,6 +6,8 @@
 //  Copyright (c) daniel.xiaofei@gmail.com All rights reserved.
 //
 
+#import "TFBaseMacro+System.h"
+
 typedef void (^VoidBlock)(void);
 
 typedef void (^ErrorBlock)(NSError *error);
@@ -41,18 +43,18 @@ typedef void (^ObjectMsgBlock)(id result, NSString *errorMsg);
  *
  *  @return
  */
-#define IDLETIMERDISABLED(enable) [[UIApplication sharedApplication] setIdleTimerDisabled:enable]
+#define IDLETIMERDISABLED(enable) [APP_APPLICATION setIdleTimerDisabled:enable]
 
 /**
  *  宽的缩放比例
  */
-#define WIDTH_SCALE ([UIScreen mainScreen].bounds.size.width / 320.0)
+#define WIDTH_SCALE (MAIN_SCREEN.bounds.size.width / 320.0)
 
 /**
  *  高的缩放比例
  *
  */
-#define HEIGHT_SCALE ([UIScreen mainScreen].bounds.size.height / 568.0)
+#define HEIGHT_SCALE (MAIN_SCREEN.bounds.size.height / 568.0)
 
 /**
  *  创建数组

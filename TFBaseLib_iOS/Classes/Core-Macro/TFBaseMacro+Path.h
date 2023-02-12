@@ -35,17 +35,22 @@
 #define APP_TMP_PATH    NSTemporaryDirectory()
 
 /**
- *  main bundle地址
+ *  main bundle
  */
-#define APP_MAIN_BUNDLE [[NSBundle mainBundle] bundlePath]
+#define MAIN_BUNDLE [NSBundle mainBundle]
+
+/**
+*  main bundle地址
+*/
+#define MAIN_BUNDLE_PATH [MAIN_BUNDLE bundlePath]
 
 /**
  *  main bundle resource地址
  */
-#define APP_MAIN_BUNDLE_RESOURCE  [[NSBundle mainBundle] resourcePath]
+#define MAIN_BUNDLE_RESOURCE  [MAIN_BUNDLE resourcePath]
 
 /**
  *  main bundle executable地址
  */
-#define APP_MAIN_BUNDLE_EXECUTABLE [[NSBundle mainBundle] executablePath]
+#define MAIN_BUNDLE_EXECUTABLE [MAIN_BUNDLE executablePath]
 

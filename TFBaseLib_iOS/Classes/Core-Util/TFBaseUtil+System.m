@@ -6,8 +6,9 @@
 //  Copyright (c) daniel.xiaofei@gmail.com All rights reserved.
 //
 
-#import "TFBaseUtil+System.h"
 #import <UIKit/UIKit.h>
+#import "TFBaseUtil+System.h"
+#import "TFBaseMacro+System.h"
 
 NSInteger tf_iOSVersion(void)
 {
@@ -43,35 +44,35 @@ BOOL tf_isLandscape(void)
 
 + (NSInteger)iOSVersion
 {
-    return [[[UIDevice currentDevice] systemVersion] integerValue];
+    return [SYSTEM_VERSION integerValue];
 }
 
 + (BOOL)isiPad
 {
-    return [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad;
+    return CURREND_DEVICE.userInterfaceIdiom == UIUserInterfaceIdiomPad;
 }
 
 + (BOOL)isiPhone
 {
-    return [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone;
+    return CURREND_DEVICE.userInterfaceIdiom == UIUserInterfaceIdiomPhone;
 }
 
 + (BOOL)isRetina
 {
-    return [[UIScreen mainScreen] respondsToSelector:@selector(displayLinkWithTarget:selector:)]
-    && ([UIScreen mainScreen].scale == 2.0 || [UIScreen mainScreen].scale == 3.0);
+    return [MAIN_SCREEN respondsToSelector:@selector(displayLinkWithTarget:selector:)]
+    && (MAIN_SCREEN.scale == 2.0 || MAIN_SCREEN.scale == 3.0);
 }
 
 + (BOOL)isRetinaHD
 {
-    return [[UIScreen mainScreen] respondsToSelector:@selector(displayLinkWithTarget:selector:)]
-    && ([UIScreen mainScreen].scale == 3.0);
+    return [MAIN_SCREEN respondsToSelector:@selector(displayLinkWithTarget:selector:)]
+    && (MAIN_SCREEN.scale == 3.0);
 }
 
 + (BOOL)isLandscape
 {
     return (UIInterfaceOrientationIsLandscape \
-            ([[UIApplication sharedApplication] statusBarOrientation]));
+            ([APP_APPLICATION statusBarOrientation]));
 }
 
 @end

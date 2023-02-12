@@ -8,6 +8,7 @@
 
 #import "TFFileManager.h"
 #import <sys/xattr.h>
+#import "TFBaseMacro+Path.h"
 
 @implementation TFFileManager
 
@@ -575,7 +576,7 @@
 
 +(NSString *)pathForMainBundleDirectory
 {
-    return [NSBundle mainBundle].resourcePath;
+    return MAIN_BUNDLE.resourcePath;
 }
 
 

@@ -7,6 +7,7 @@
 //
 
 #import "TFBaseUtil+URL.h"
+#import "TFBaseMacro+System.h"
 
 BOOL tf_canOpenURL(NSString * urlString)
 {
@@ -23,12 +24,12 @@ void tf_openURL(NSString* urlString)
 //打开URL
 +(BOOL)canOpenURL:(NSString*)urlString
 {
-    return [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:urlString]];
+    return [APP_APPLICATION canOpenURL:[NSURL URLWithString:urlString]];
 }
 
 +(void)openURL:(NSString*)urlString
 {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString] options:@{} completionHandler:nil];
+    [APP_APPLICATION openURL:[NSURL URLWithString:urlString] options:@{} completionHandler:nil];
 }
 
 

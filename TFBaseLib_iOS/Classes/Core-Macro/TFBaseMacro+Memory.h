@@ -11,5 +11,3 @@
 
 #define WEAK_SELF __weak __typeof(&*self)weakSelf = self;
 #define STRONG_SELF __strong __typeof(&*self)strongSelf = self;
-
-#define WS(weakSelf)  __weak __typeof(&*self)weakSelf = self;

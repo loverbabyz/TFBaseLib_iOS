@@ -6,9 +6,9 @@
 //  Copyright (c) daniel.xiaofei@gmail.com All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <CoreLocation/CoreLocation.h>
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
+#import "TFBaseMacro+Singleton.h"
 
 @interface LocationModel : NSObject
 
@@ -77,7 +77,7 @@
 @property (nonatomic, strong) NSString *city;
 
 
-+ (instancetype)sharedManager;
+TFSingletonH(Manager)
 
 /**
  *  获取定位信息

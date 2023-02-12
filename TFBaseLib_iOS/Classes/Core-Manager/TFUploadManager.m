@@ -20,15 +20,7 @@
 
 @implementation TFUploadManager
 
-+ (instancetype)sharedManager
-{
-    static TFUploadManager *sharedInstance=nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sharedInstance = [[TFUploadManager alloc] init];
-    });
-    return sharedInstance;
-}
+TFSingletonM(Manager)
 
 - (NSMutableArray *)paths
 {

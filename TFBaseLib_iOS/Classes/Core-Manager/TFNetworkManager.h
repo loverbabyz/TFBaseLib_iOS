@@ -6,6 +6,8 @@
 //  Copyright (c) daniel.xiaofei@gmail.com All rights reserved.
 //
 
+#import "TFBaseMacro+Singleton.h"
+
 typedef NS_ENUM(NSInteger, TFNetworkReachabilityStatus) {
     TFNetworkReachabilityStatusUnknown          = -1,
     TFNetworkReachabilityStatusNotReachable     = 0,
@@ -17,7 +19,7 @@ typedef NS_ENUM(NSInteger, TFNetworkReachabilityStatus) {
 
 #define kTFNetworkManager  ([TFNetworkManager sharedManager])
 
-+ (instancetype)sharedManager;
+TFSingletonH(Manager)
 
 /**
  *  判断网络状态

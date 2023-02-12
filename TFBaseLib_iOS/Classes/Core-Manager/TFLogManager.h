@@ -7,12 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TFBaseMacro+Singleton.h"
 
 @interface TFLogManager : NSObject
 
 #define kTFLogManager  ([TFLogManager sharedManager])
 
-+ (instancetype) sharedManager;
+TFSingletonH(Manager)
 
 /**
  *  自定义保存日志方式

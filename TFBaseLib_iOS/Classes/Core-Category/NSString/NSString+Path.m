@@ -7,6 +7,7 @@
 //
 
 #import "NSString+Path.h"
+#import "TFBaseMacro+Path.h"
 
 @implementation NSString (Path)
 
@@ -32,7 +33,7 @@
 
 + (NSString *)pathWithFileName:(NSString *)fileName ofType:(NSString *)type
 {
-    return [[NSBundle mainBundle] pathForResource:fileName ofType:type];
+    return [MAIN_BUNDLE pathForResource:fileName ofType:type];
 }
 
 @end

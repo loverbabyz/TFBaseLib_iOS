@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "TFBaseMacro+Singleton.h"
 
 #define kPhotosManager ([TFPhotosManager sharedManager])
 
@@ -29,7 +30,7 @@ typedef enum : NSUInteger {
 @property (nonatomic, strong) NSString *videoPlistName;
 @property (nonatomic, strong) NSString *videoFolderName;
 
-+ (instancetype)sharedManager;
+TFSingletonH(Manager)
 
 /**
  授权状态检测回调

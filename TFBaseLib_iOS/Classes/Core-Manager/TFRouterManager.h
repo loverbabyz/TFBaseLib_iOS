@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TFBaseMacro+Singleton.h"
 
 /**
  *  路由管理类
@@ -19,7 +20,7 @@
 /// host
 @property (nonatomic, copy, readonly) NSString *host;
 
-+ (instancetype)sharedManager;
+TFSingletonH(Manager)
 
 @end
 

@@ -12,6 +12,7 @@
 #import <AddressBook/AddressBook.h>
 #import <UIKit/UIKit.h>
 #import <Contacts/Contacts.h>
+#import "TFBaseMacro+System.h"
 
 @implementation TFPermissionManager
 
@@ -19,7 +20,7 @@
 {
     
     //ios7之前系统没有设置权限
-    if([[[UIDevice currentDevice] systemVersion] floatValue] < 7.0){
+    if([SYSTEM_VERSION floatValue] < 7.0){
         completion(YES);
         return;
     }
@@ -73,7 +74,7 @@
 
 + (void)getPhotoPermission:(nonnull void(^)(BOOL allowed))completion
 {
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0)
+    if ([SYSTEM_VERSION floatValue] < 8.0)
     {
         PHAuthorizationStatus authorizationStatus = [PHPhotoLibrary authorizationStatus];
         
@@ -207,7 +208,7 @@
     if (UIApplicationOpenSettingsURLString != NULL)
     {
         NSURL *appSettings = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
-        [[UIApplication sharedApplication] openURL:appSettings options:@{} completionHandler:nil];
+        [APP_APPLICATION openURL:appSettings options:@{} completionHandler:nil];
     }
 }
 
