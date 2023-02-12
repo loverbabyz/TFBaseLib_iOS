@@ -45,7 +45,7 @@
     [timer start];
     [timer destroy];
     
-    STR(@"%@", @"DD");
+    TF_STR(@"%@", @"DD");
 }
 
 - (void)didReceiveMemoryWarning

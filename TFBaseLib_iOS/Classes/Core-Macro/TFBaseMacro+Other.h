@@ -43,22 +43,30 @@ typedef void (^ObjectMsgBlock)(id result, NSString *errorMsg);
  *
  *  @return
  */
+#ifndef TF_IDLETIMERDISABLED
 #define TF_IDLETIMERDISABLED(enable) [APP_APPLICATION setIdleTimerDisabled:enable]
+#endif
 
 /**
  *  创建数组
  */
+#ifndef TF_ARR
 #define TF_ARR(...) [NSArray arrayWithObjects:__VA_ARGS__, nil]
+#endif
 
 /**
  *  创建动态数组
  */
+#ifndef TF_MARR
 #define TF_MARR(...) [NSMutableArray arrayWithObjects:__VA_ARGS__, nil]
+#endif
 
 /**
  *  创建字符串
  */
-#define STR(string, args...)    [NSString stringWithFormat:string, args]
+#ifndef TF_STR
+#define TF_STR(string, args...) [NSString stringWithFormat:string, args]
+#endif
 
 /**
  *  创建通知
@@ -69,18 +77,6 @@ typedef void (^ObjectMsgBlock)(id result, NSString *errorMsg);
  *
  *  @return 创建的通知
  */
+#ifndef TF_POST_NOTIFICATION
 #define TF_POST_NOTIFICATION(name, obj, info) [[NSNotificationCenter defaultCenter] postNotificationName:name object:obj userInfo:info];
-
-/**
- *  判断是真机
- */
-#if TARGET_OS_IPHONE
-//iPhone Device
-#endif
-
-/**
- *  判断是模拟器
- */
-#if TARGET_IPHONE_SIMULATOR
-//iPhone Simulator
 #endif
