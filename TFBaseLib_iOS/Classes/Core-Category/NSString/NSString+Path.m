@@ -13,17 +13,17 @@
 
 + (NSString *)documentPath
 {
-    return [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+    return [APP_HOME_PATH stringByAppendingPathComponent:@"Documents"];
 }
 
 + (NSString *)tmpPath
 {
-    return [NSHomeDirectory() stringByAppendingPathComponent:@"tmp"];
+    return [APP_HOME_PATH stringByAppendingPathComponent:@"tmp"];
 }
 
 + (NSString *)cachePath
 {
-    return [NSHomeDirectory() stringByAppendingPathComponent:@"Library/Caches"];
+    return [APP_HOME_PATH stringByAppendingPathComponent:@"Library/Caches"];
 }
 
 + (NSString *)pathWithFileName:(NSString *)fileName

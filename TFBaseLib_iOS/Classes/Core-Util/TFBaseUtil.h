@@ -12,7 +12,7 @@
 
 #define kTFBaseUtil [TFBaseUtil sharedManager]
 
-#define kTFBaseUtilKeyWindow [TFBaseUtil keyWindow];
+#define kTFBaseUtilKeyWindow [TFBaseUtil keyWindow]
 
 @interface TFBaseUtil : NSObject
 

@@ -14,7 +14,7 @@
 /**
  *  沙盒CACH地址
  */
-#define APP_CACHE_PATH      [NSHomeDirectory() stringByAppendingPathComponent:@"Library/Caches"]
+#define APP_CACHE_PATH      [APP_HOME_PATH stringByAppendingPathComponent:@"Library/Caches"]
 
 /**
  *  沙盒DOCUMENT地址
@@ -23,11 +23,11 @@
 /**
  *  沙盒DOCUMENT地址
  */
-#define APP_DOCUMENT_PATH2 [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
+#define APP_DOCUMENT_PATH2 [APP_HOME_PATH stringByAppendingPathComponent:@"Documents"]
 /**
  *  沙盒LIBRARY地址
  */
-#define APP_LIBRARY_PATH [NSHomeDirectory() stringByAppendingPathComponent:@"Library"]
+#define APP_LIBRARY_PATH [APP_HOME_PATH stringByAppendingPathComponent:@"Library"]
 
 /**
  *  沙盒TMP地址
