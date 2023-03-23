@@ -7,6 +7,7 @@
 //
 
 #import "TFLocationManager.h"
+#import "TFBaseMacro+System.h"
 
 #define kDefaultTimeOut 60*10
 #define LAST_LOCATION @"kUserLocation"
@@ -68,15 +69,7 @@
 //    [[TFLocationManager sharedManager]sliceStartLocation];
 }
 
-+ (instancetype)sharedManager
-{
-    static TFLocationManager *sharedInstance=nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sharedInstance = [[TFLocationManager alloc] init];
-    });
-    return sharedInstance;
-}
+TFSingletonM(Manager)
 
 - (void)dealloc
 {
@@ -98,7 +91,7 @@
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
         self.locationManager.delegate = self;
         
-        if ([[UIDevice currentDevice].systemVersion floatValue] >= 8)
+        if ([TF_SYSTEM_VERSION floatValue] >= 8)
         {
 //            [self.locationManager requestAlwaysAuthorization];  // 始终允许访问位置信息
             [self.locationManager requestWhenInUseAuthorization];  // 使用应用程序期间允许访问位置数据
@@ -150,7 +143,7 @@
     else if(authorizationStatus == kCLAuthorizationStatusDenied || authorizationStatus == kCLAuthorizationStatusRestricted)
     {
         //当需要提示关闭了定位功能的用户使用定位的时候可以给通过如下的方式跳转到设定画面：
-        //[[UIApplication sharedApplication] openURL:[NSURL URLWithString: UIApplicationOpenSettingsURLString]];
+        //[APP_APPLICATION openURL:[NSURL URLWithString: UIApplicationOpenSettingsURLString]];
         if (failedBlock) {
             failedBlock(@"您的应用的没有定位权限，请先前往系统设置中开启本应用的定位权限");
         }

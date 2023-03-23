@@ -13,15 +13,7 @@
 
 @implementation TFNetworkManager
 
-+ (instancetype)sharedManager
-{
-    static TFNetworkManager *sharedInstance = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sharedInstance = [[TFNetworkManager alloc] init];
-    });
-    return sharedInstance;
-}
+TFSingletonM(Manager)
 
 - (instancetype)init
 {

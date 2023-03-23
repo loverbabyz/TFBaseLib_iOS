@@ -7,6 +7,7 @@
 //
 
 #import "TFBaseUtil+Other.h"
+#import "TFBaseMacro+System.h"
 
 BOOL tf_isEmpty(NSString *string)
 {
@@ -27,12 +28,12 @@ BOOL tf_isContainsEmoji(NSString *string)
 
 +(void)idleTimerDisabled:(BOOL)enable
 {
-    [UIApplication sharedApplication].idleTimerDisabled = enable;
+    TF_APP_APPLICATION.idleTimerDisabled = enable;
 }
 
 + (UIView *)getViewFromNib:(NSString *)className
 {
-    NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:className owner:nil options:nil];
+    NSArray* nibView =  [TF_MAIN_BUNDLE loadNibNamed:className owner:nil options:nil];
     return [nibView objectAtIndex:0];
 }
 

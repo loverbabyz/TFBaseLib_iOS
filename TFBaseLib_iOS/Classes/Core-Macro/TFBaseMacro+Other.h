@@ -6,6 +6,8 @@
 //  Copyright (c) daniel.xiaofei@gmail.com All rights reserved.
 //
 
+#import "TFBaseMacro+System.h"
+
 typedef void (^VoidBlock)(void);
 
 typedef void (^ErrorBlock)(NSError *error);
@@ -41,33 +43,30 @@ typedef void (^ObjectMsgBlock)(id result, NSString *errorMsg);
  *
  *  @return
  */
-#define IDLETIMERDISABLED(enable) [[UIApplication sharedApplication] setIdleTimerDisabled:enable]
-
-/**
- *  宽的缩放比例
- */
-#define WIDTH_SCALE ([UIScreen mainScreen].bounds.size.width / 320.0)
-
-/**
- *  高的缩放比例
- *
- */
-#define HEIGHT_SCALE ([UIScreen mainScreen].bounds.size.height / 568.0)
+#ifndef TF_IDLETIMERDISABLED
+#define TF_IDLETIMERDISABLED(enable) [APP_APPLICATION setIdleTimerDisabled:enable]
+#endif
 
 /**
  *  创建数组
  */
-#define ARR(...) [NSArray arrayWithObjects:__VA_ARGS__, nil]
+#ifndef TF_ARR
+#define TF_ARR(...) [NSArray arrayWithObjects:__VA_ARGS__, nil]
+#endif
 
 /**
  *  创建动态数组
  */
-#define MARR(...) [NSMutableArray arrayWithObjects:__VA_ARGS__, nil]
+#ifndef TF_MARR
+#define TF_MARR(...) [NSMutableArray arrayWithObjects:__VA_ARGS__, nil]
+#endif
 
 /**
  *  创建字符串
  */
-#define STR(string, args...)    [NSString stringWithFormat:string, args]
+#ifndef TF_STR
+#define TF_STR(string, args...) [NSString stringWithFormat:string, args]
+#endif
 
 /**
  *  创建通知
@@ -78,18 +77,6 @@ typedef void (^ObjectMsgBlock)(id result, NSString *errorMsg);
  *
  *  @return 创建的通知
  */
-#define POST_NOTIFICATION(name, obj, info) [[NSNotificationCenter defaultCenter] postNotificationName:name object:obj userInfo:info];
-
-/**
- *  判断是真机
- */
-#if TARGET_OS_IPHONE
-//iPhone Device
-#endif
-
-/**
- *  判断是模拟器
- */
-#if TARGET_IPHONE_SIMULATOR
-//iPhone Simulator
+#ifndef TF_POST_NOTIFICATION
+#define TF_POST_NOTIFICATION(name, obj, info) [[NSNotificationCenter defaultCenter] postNotificationName:name object:obj userInfo:info];
 #endif

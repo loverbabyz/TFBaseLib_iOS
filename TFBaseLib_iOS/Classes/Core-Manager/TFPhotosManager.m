@@ -37,16 +37,7 @@
     }
 }
 
-+ (instancetype)sharedManager {
-    static TFPhotosManager *instance = nil;
-    
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        instance = [[TFPhotosManager alloc] init];
-    });
-    
-    return instance;
-}
+TFSingletonM(Manager)
 
 - (instancetype)init
 {

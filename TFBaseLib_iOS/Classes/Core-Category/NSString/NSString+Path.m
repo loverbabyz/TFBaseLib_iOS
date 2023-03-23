@@ -7,22 +7,23 @@
 //
 
 #import "NSString+Path.h"
+#import "TFBaseMacro+Path.h"
 
 @implementation NSString (Path)
 
 + (NSString *)documentPath
 {
-    return [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+    return [TF_APP_HOME_PATH stringByAppendingPathComponent:@"Documents"];
 }
 
 + (NSString *)tmpPath
 {
-    return [NSHomeDirectory() stringByAppendingPathComponent:@"tmp"];
+    return [TF_APP_HOME_PATH stringByAppendingPathComponent:@"tmp"];
 }
 
 + (NSString *)cachePath
 {
-    return [NSHomeDirectory() stringByAppendingPathComponent:@"Library/Caches"];
+    return [TF_APP_HOME_PATH stringByAppendingPathComponent:@"Library/Caches"];
 }
 
 + (NSString *)pathWithFileName:(NSString *)fileName
@@ -32,7 +33,7 @@
 
 + (NSString *)pathWithFileName:(NSString *)fileName ofType:(NSString *)type
 {
-    return [[NSBundle mainBundle] pathForResource:fileName ofType:type];
+    return [TF_MAIN_BUNDLE pathForResource:fileName ofType:type];
 }
 
 @end

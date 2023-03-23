@@ -336,16 +336,7 @@ static NSDateFormatter *dateFormatter;
      */
 }
 
-+ (instancetype) sharedManager {
-    static TFLogManager *sharedInstance = nil;
-    
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sharedInstance = [[TFLogManager alloc] init];
-    });
-    
-    return sharedInstance;
-}
+TFSingletonM(Manager)
 
 - (void)logWithDeleteInterval:(NSTimeInterval)deleteInterval
                        maxAge:(NSTimeInterval)maxAge

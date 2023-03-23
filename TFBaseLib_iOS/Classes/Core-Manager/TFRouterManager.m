@@ -12,6 +12,7 @@
 #import "Aspects.h"
 #import "NSString+Ext.h"
 #import "DeepLinkKit.h"
+#import "TFBaseMacro+Path.h"
 
 @interface TFRouterManager()
 
@@ -106,15 +107,7 @@ BOOL dynamicMethod2_router(id _self, SEL cmd,UIApplication *application ,NSURL *
      error:NULL];
 }
 
-+ (instancetype)sharedManager {
-    static dispatch_once_t onceToken;
-    static TFRouterManager *sharedInstance;
-    dispatch_once(&onceToken, ^{
-        sharedInstance = [[TFRouterManager alloc] init];
-    });
-    
-    return sharedInstance;
-}
+TFSingletonM(Manager)
 
 - (instancetype)init {
     if (self = [super init]) {
@@ -151,7 +144,7 @@ BOOL dynamicMethod2_router(id _self, SEL cmd,UIApplication *application ,NSURL *
 }
 
 - (void)schemeInfo {
-    NSDictionary *dict = [[NSBundle mainBundle] infoDictionary];
+    NSDictionary *dict = [TF_MAIN_BUNDLE infoDictionary];
     NSArray *urlTypes = dict[@"CFBundleURLTypes"];
     
     for (NSDictionary *scheme in urlTypes) {
@@ -166,7 +159,7 @@ BOOL dynamicMethod2_router(id _self, SEL cmd,UIApplication *application ,NSURL *
 }
 
 - (NSDictionary *)_routerConfig {
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"RouterConfig" ofType:@"plist"];
+    NSString *path = [TF_MAIN_BUNDLE pathForResource:@"RouterConfig" ofType:@"plist"];
     
     return [NSDictionary dictionaryWithContentsOfFile:path];
 }

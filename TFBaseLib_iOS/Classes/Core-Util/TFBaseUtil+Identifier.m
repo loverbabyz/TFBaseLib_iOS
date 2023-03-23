@@ -32,7 +32,7 @@ NSString *tf_uniqueIdentifier(void)
 + (NSString *)uniqueIdentifier
 {
     //NSString *uuid = [[NSUUID UUID] UUIDString];
-    //NSString *identifierForVendor = [[UIDevice currentDevice].identifierForVendor UUIDString];
+    //NSString *identifierForVendor = [CURREND_DEVICE.identifierForVendor UUIDString];
     //NSString *identifierForAdvertising = [[ASIdentifierManager sharedManager].advertisingIdentifier UUIDString];
     //NSString *adId = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
     

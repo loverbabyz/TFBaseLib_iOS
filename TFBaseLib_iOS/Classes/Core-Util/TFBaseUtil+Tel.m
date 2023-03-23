@@ -7,7 +7,7 @@
 //
 
 #import "TFBaseUtil+Tel.h"
-
+#import "TFBaseMacro+System.h"
 
 BOOL tf_canTel(void)
 {
@@ -30,17 +30,17 @@ void tf_telprompt(NSString* phoneNumber)
 
 + (BOOL)canTel
 {
-    return [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"tel:"]];
+    return [TF_APP_APPLICATION canOpenURL:[NSURL URLWithString:@"tel:"]];
 }
 
 + (void)tel:(NSString*)phoneNumber
 {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",phoneNumber]] options:@{} completionHandler:nil];
+    [TF_APP_APPLICATION openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",phoneNumber]] options:@{} completionHandler:nil];
 }
 
 + (void)telprompt:(NSString*)phoneNumber
 {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"telprompt:%@",phoneNumber]] options:@{} completionHandler:nil];
+    [TF_APP_APPLICATION openURL:[NSURL URLWithString:[NSString stringWithFormat:@"telprompt:%@",phoneNumber]] options:@{} completionHandler:nil];
 }
 
 

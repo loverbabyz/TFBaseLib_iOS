@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "TFBaseMacro+Singleton.h"
 
 typedef void(^UploadProgress)(CGFloat progress, CGFloat totalMBRead, CGFloat totalMBExpectedToRead);
 
@@ -15,7 +16,7 @@ typedef void(^UploadProgress)(CGFloat progress, CGFloat totalMBRead, CGFloat tot
 
 #define kTFUploadManager  ([TFUploadManager sharedManager])
 
-+ (instancetype) sharedManager;
+TFSingletonH(Manager)
 
 #pragma mark - 类方法
 
