@@ -7,7 +7,7 @@
 //
 
 #import "TFDownloadManager.h"
-#import <AFNetworking/AFNetworking.h>
+#import "TFAFNetworking.h"
 
 #define  KEY_filePath      @"filePath"
 #define  KEY_URLString     @"URLString"
@@ -119,7 +119,7 @@ TFSingletonM(Manager)
     }
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+    TFAFURLSessionManager *manager = [[TFAFURLSessionManager alloc] initWithSessionConfiguration:configuration];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:URLString]];
     

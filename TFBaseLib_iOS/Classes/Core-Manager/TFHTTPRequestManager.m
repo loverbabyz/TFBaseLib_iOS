@@ -13,14 +13,14 @@
 #import <CoreServices/CoreServices.h>
 
 #import "ObjcAssociatedObjectHelpers.h"
-#import <AFNetworking/AFNetworking.h>
+#import "TFAFNetworking.h"
 
 
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "OCUnusedMethodInspection"
 
 typedef int (^RetryDelayCalcBlock)(int, int, int); // int totalRetriesAllowed, int retriesRemaining, int delayBetweenIntervalsModifier
-@interface TFHTTPSessionManager : AFHTTPSessionManager
+@interface TFHTTPSessionManager : TFAFHTTPSessionManager
 
 @end
 
@@ -161,7 +161,7 @@ SYNTHESIZE_ASC_OBJ(__retryDelayCalcBlock, setRetryDelayCalcBlock);
 
 - (NSURLSessionDataTask *)POST:(NSString *)URLString
                     parameters:(NSDictionary *)parameters
-     constructingBodyWithBlock:(void (^)(id <AFMultipartFormData> formData))block
+     constructingBodyWithBlock:(void (^)(id <TFAFMultipartFormData> formData))block
                        success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
                        failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
                      autoRetry:(int)timesToRetry
@@ -240,7 +240,7 @@ SYNTHESIZE_ASC_OBJ(__retryDelayCalcBlock, setRetryDelayCalcBlock);
 
 - (NSURLSessionDataTask *)POST:(NSString *)URLString
                     parameters:(NSDictionary *)parameters
-     constructingBodyWithBlock:(void (^)(id <AFMultipartFormData> formData))block
+     constructingBodyWithBlock:(void (^)(id <TFAFMultipartFormData> formData))block
                        success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
                        failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
                      autoRetry:(int)timesToRetry {
@@ -299,14 +299,14 @@ TFSingletonM(Manager)
         
         _sessionManager.operationQueue.maxConcurrentOperationCount=10;
         
-        _sessionManager.requestSerializer = [AFJSONRequestSerializer serializer];
+        _sessionManager.requestSerializer = [TFAFJSONRequestSerializer serializer];
         [_sessionManager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
         _sessionManager.requestSerializer.timeoutInterval = DEFAULT_TIMEOUT_INTERVAL;
         
-        _sessionManager.responseSerializer = [AFJSONResponseSerializer serializer];
+        _sessionManager.responseSerializer = [TFAFJSONResponseSerializer serializer];
         _sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"text/json",@"text/plain",@"application/json",@"charset=utf-8",nil];
         
-        AFSecurityPolicy *securityPolicy = [AFSecurityPolicy defaultPolicy];
+        TFAFSecurityPolicy *securityPolicy = [TFAFSecurityPolicy defaultPolicy];
         
         //allowInvalidCertificates 是否允许无效证书（也就是自建的证书）,默认为NO,如果是需要验证自建证书，需要设置为YES
         securityPolicy.allowInvalidCertificates = YES;
@@ -353,16 +353,16 @@ TFSingletonM(Manager)
  *
  *  @param serializerType RequestSerializerTypeJSON和RequestSerializerTypeHTTP
  */
-+ (void)initRequestSerializerType:(RequestSerializerType)serializerType customeRequestSerializer:(id<AFURLRequestSerialization>)customeRequestSerializer
++ (void)initRequestSerializerType:(RequestSerializerType)serializerType customeRequestSerializer:(id<TFAFURLRequestSerialization>)customeRequestSerializer
 {
     TFHTTPSessionManager *manager = [[TFHTTPRequestManager sharedManager]sessionManager];
     if (serializerType == RequestSerializerTypeHTTP)
     {
-        manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+        manager.requestSerializer = [TFAFHTTPRequestSerializer serializer];
     }
     else if (serializerType == RequestSerializerTypeJSON)
     {
-        manager.requestSerializer = [AFJSONRequestSerializer serializer];
+        manager.requestSerializer = [TFAFJSONRequestSerializer serializer];
         //[manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     } else {
         manager.requestSerializer = customeRequestSerializer;
@@ -383,20 +383,20 @@ TFSingletonM(Manager)
     switch (serializerType) {
         case ResponseSerializerTypeHTTP:
         {
-            manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+            manager.responseSerializer = [TFAFHTTPResponseSerializer serializer];
         }
             break;
             
         case ResponseSerializerTypeJSON:
         {
-            manager.responseSerializer = [AFJSONResponseSerializer serializer];
+            manager.responseSerializer = [TFAFJSONResponseSerializer serializer];
             manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"text/json",@"text/plain",@"application/json",@"charset=utf-8",nil];
         }
             break;
             
         case ResponseSerializerTypeCompound:
         {
-            manager.responseSerializer = [AFCompoundResponseSerializer serializer];
+            manager.responseSerializer = [TFAFCompoundResponseSerializer serializer];
         }
             break;
     }

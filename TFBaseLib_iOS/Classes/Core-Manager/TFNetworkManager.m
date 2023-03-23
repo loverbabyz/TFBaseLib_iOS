@@ -9,7 +9,7 @@
 #import "TFNetworkManager.h"
 
 #import <SystemConfiguration/CaptiveNetwork.h>
-#import <AFNetworking/AFNetworkReachabilityManager.h>
+#import "TFAFNetworkReachabilityManager.h"
 
 @implementation TFNetworkManager
 
@@ -36,18 +36,18 @@
 {
     if (block)
     {
-        void(^afBlock)(AFNetworkReachabilityStatus status) = ^(AFNetworkReachabilityStatus status){
+        void(^afBlock)(TFAFNetworkReachabilityStatus status) = ^(TFAFNetworkReachabilityStatus status){
             block((TFNetworkReachabilityStatus)status);
         };
         
-        [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:afBlock];
-        [[AFNetworkReachabilityManager sharedManager] startMonitoring];
+        [[TFAFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:afBlock];
+        [[TFAFNetworkReachabilityManager sharedManager] startMonitoring];
     }
 }
 
 - (void)stopMonitoring
 {
-    [[AFNetworkReachabilityManager sharedManager] stopMonitoring];
+    [[TFAFNetworkReachabilityManager sharedManager] stopMonitoring];
 }
 
 #pragma mark -
@@ -57,15 +57,15 @@
 }
 
 - (BOOL)isReachableViaWWAN {
-    return self.networkReachabilityStatus == AFNetworkReachabilityStatusReachableViaWWAN;
+    return self.networkReachabilityStatus == TFAFNetworkReachabilityStatusReachableViaWWAN;
 }
 
 - (BOOL)isReachableViaWiFi {
-    return self.networkReachabilityStatus == AFNetworkReachabilityStatusReachableViaWiFi;
+    return self.networkReachabilityStatus == TFAFNetworkReachabilityStatusReachableViaWiFi;
 }
 
 - (TFNetworkReachabilityStatus)networkReachabilityStatus {
-    return (TFNetworkReachabilityStatus)[AFNetworkReachabilityManager sharedManager].networkReachabilityStatus;
+    return (TFNetworkReachabilityStatus)[TFAFNetworkReachabilityManager sharedManager].networkReachabilityStatus;
 }
 
 - (NSString *)currentWifiSSID

@@ -7,7 +7,7 @@
 //
 
 #import "TFUploadManager.h"
-#import <AFNetworking/AFNetworking.h>
+#import "TFAFNetworking.h"
 
 #define  KEY_URLString     @"URLString"
 #define  KEY_operation      @"operation"
@@ -108,7 +108,7 @@ constructingBodyWithBlock:(nullable void (^)(id formData))block
                success:(void (^)(id backData))successBlock
                failure:(void (^)(NSError *error))failureBlock;
 {
-    NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer]
+    NSMutableURLRequest *request = [[TFAFHTTPRequestSerializer serializer]
                                     multipartFormRequestWithMethod:@"POST"
                                     URLString:URLString
                                     parameters:parameters
@@ -127,7 +127,7 @@ constructingBodyWithBlock:(nullable void (^)(id formData))block
         }
     }
     
-    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    TFAFURLSessionManager *manager = [[TFAFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
     
     
     self.uploadProgress = progressBlock;

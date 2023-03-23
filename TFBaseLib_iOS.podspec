@@ -54,13 +54,13 @@ Base lib for Treasure framework
       'OTHER_LDFLAGS' => '-ObjC -all_load -force_load'
   }
 
-  s.dependency 'AutoCoding'
-  s.dependency 'AFNetworking'
-  s.dependency 'CocoaLumberjack'
-  s.dependency 'FMDB'
-  s.dependency 'Aspects'
-  s.dependency 'SAMKeychain'
-  s.dependency 'ObjcAssociatedObjectHelpers'
-  s.dependency 'MJExtension'
+#  s.dependency 'AutoCoding'
+#  s.dependency 'AFNetworking'
+#  s.dependency 'CocoaLumberjack'
+#  s.dependency 'FMDB'
+#  s.dependency 'Aspects'
+#  s.dependency 'SAMKeychain'
+#  s.dependency 'ObjcAssociatedObjectHelpers'
+#  s.dependency 'MJExtension'
   
 end

@@ -7,7 +7,7 @@
 //
 
 #import "NSObject+Converter.h"
-#import <MJExtension/MJExtension.h>
+#import "MJExtension.h"
 
 @implementation NSObject (Converter)
 
