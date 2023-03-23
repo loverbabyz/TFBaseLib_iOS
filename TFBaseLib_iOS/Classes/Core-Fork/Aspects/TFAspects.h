@@ -40,7 +40,7 @@ typedef NS_OPTIONS(NSUInteger, TFAspectOptions) {
 
 /**
  Aspects uses Objective-C message forwarding to hook into messages. This will create some overhead. Don't add aspects to methods that are called a lot. Aspects is meant for view/controller code that is not called a 1000 times per second.
-
+ 
  Adding aspects returns an opaque token which can be used to deregister again. All calls are thread safe.
  */
 @interface NSObject (TFAspects)
@@ -54,16 +54,16 @@ typedef NS_OPTIONS(NSUInteger, TFAspectOptions) {
 ///
 /// @note Hooking static methods is not supported.
 /// @return A token which allows to later deregister the aspect.
-+ (id<TFAspectToken>)aspect_hookSelector:(SEL)selector
-                      withOptions:(TFAspectOptions)options
-                       usingBlock:(id)block
-                            error:(NSError **)error;
++ (id<TFAspectToken>)tf_aspect_hookSelector:(SEL)selector
+                                withOptions:(TFAspectOptions)options
+                                 usingBlock:(id)block
+                                      error:(NSError **)error;
 
 /// Adds a block of code before/instead/after the current `selector` for a specific instance.
-- (id<TFAspectToken>)aspect_hookSelector:(SEL)selector
-                      withOptions:(TFAspectOptions)options
-                       usingBlock:(id)block
-                            error:(NSError **)error;
+- (id<TFAspectToken>)tf_aspect_hookSelector:(SEL)selector
+                                withOptions:(TFAspectOptions)options
+                                 usingBlock:(id)block
+                                      error:(NSError **)error;
 
 @end
 
@@ -76,7 +76,7 @@ typedef NS_ENUM(NSUInteger, TFAspectErrorCode) {
     TFAspectErrorFailedToAllocateClassPair,             /// The runtime failed creating a class pair.
     TFAspectErrorMissingBlockSignature,                 /// The block misses compile time signature info and can't be called.
     TFAspectErrorIncompatibleBlockSignature,            /// The block signature does not match the method or is too large.
-
+    
     TFAspectErrorRemoveObjectAlreadyDeallocated = 100   /// (for removing) The object hooked is already deallocated.
 };
 

@@ -55,7 +55,7 @@ BOOL dynamicMethod2_router(id _self, SEL cmd,UIApplication *application ,NSURL *
 
 + (void)trackAppDelegate {
     [NSClassFromString(@"AppDelegate")
-     aspect_hookSelector:@selector(application:didFinishLaunchingWithOptions:)
+     tf_aspect_hookSelector:@selector(application:didFinishLaunchingWithOptions:)
      withOptions:TFAspectPositionBefore
      usingBlock:^(id<TFAspectInfo> aspectInfo, id application,id launchOptions){
         // Route registration.
@@ -66,7 +66,7 @@ BOOL dynamicMethod2_router(id _self, SEL cmd,UIApplication *application ,NSURL *
      error:NULL];
     
     [NSClassFromString(@"AppDelegate")
-     aspect_hookSelector:@selector(application:handleOpenURL:)
+     tf_aspect_hookSelector:@selector(application:handleOpenURL:)
      withOptions:TFAspectPositionBefore
      usingBlock:^(id<TFAspectInfo> aspectInfo, id application, id url){
         BOOL result = [[TFRouterManager sharedManager].router handleURL:url withCompletion:nil];
@@ -76,7 +76,7 @@ BOOL dynamicMethod2_router(id _self, SEL cmd,UIApplication *application ,NSURL *
      error:NULL];
     
     [NSClassFromString(@"AppDelegate")
-     aspect_hookSelector:@selector(application:openURL:sourceApplication:annotation:)
+     tf_aspect_hookSelector:@selector(application:openURL:sourceApplication:annotation:)
      withOptions:TFAspectPositionBefore
      usingBlock:^(id<TFAspectInfo> aspectInfo, id application, id url, id sourceApplication, id annotation){
         BOOL result = [[TFRouterManager sharedManager].router handleURL:url withCompletion:nil];
@@ -87,7 +87,7 @@ BOOL dynamicMethod2_router(id _self, SEL cmd,UIApplication *application ,NSURL *
     
     /// NOTE: 9.0以后使用新API接口
     [NSClassFromString(@"AppDelegate")
-     aspect_hookSelector:@selector(application:openURL:options:)
+     tf_aspect_hookSelector:@selector(application:openURL:options:)
      withOptions:TFAspectPositionBefore
      usingBlock:^(id<TFAspectInfo> aspectInfo, id application, id url, id options) {
         BOOL result = [[TFRouterManager sharedManager].router handleURL:url withCompletion:nil];
@@ -97,7 +97,7 @@ BOOL dynamicMethod2_router(id _self, SEL cmd,UIApplication *application ,NSURL *
      error:NULL];
     
     [NSClassFromString(@"AppDelegate")
-     aspect_hookSelector:@selector(application:continueUserActivity:restorationHandler:)
+     tf_aspect_hookSelector:@selector(application:continueUserActivity:restorationHandler:)
      withOptions:TFAspectPositionBefore
      usingBlock:^(id<TFAspectInfo> aspectInfo, id application, id userActivity, id restorationHandler) {
         BOOL result = [[TFRouterManager sharedManager].router handleUserActivity:userActivity withCompletion:nil];

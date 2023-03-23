@@ -1,5 +1,5 @@
 //
-//  AutoCoding.h
+//  TFAutoCoding.h
 //
 //  Version 2.2.3
 //
@@ -34,7 +34,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NSObject (AutoCoding) <NSSecureCoding>
+@interface NSObject (TFAutoCoding) <NSSecureCoding>
 
 /**
  * Returns a dictionary containing the names and classes of all the properties of

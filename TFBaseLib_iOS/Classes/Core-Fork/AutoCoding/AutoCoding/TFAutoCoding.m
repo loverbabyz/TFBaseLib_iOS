@@ -1,5 +1,5 @@
 //
-//  AutoCoding.m
+//  TFAutoCoding.m
 //
 //  Version 2.2.3
 //
@@ -30,7 +30,7 @@
 //  3. This notice may not be removed or altered from any source distribution.
 //
 
-#import "AutoCoding.h"
+#import "TFAutoCoding.h"
 #import <objc/runtime.h>
 
 
@@ -39,10 +39,10 @@
 #pragma clang diagnostic ignored "-Wobjc-designated-initializers"
 
 
-static NSString *const AutocodingException = @"AutocodingException";
+static NSString *const TFAutocodingException = @"TFAutocodingException";
 
 
-@implementation NSObject (AutoCoding)
+@implementation NSObject (TFAutoCoding)
 
 + (BOOL)supportsSecureCoding
 {
@@ -250,7 +250,7 @@ static NSString *const AutocodingException = @"AutocodingException";
         {
             if (secureSupported && ![object isKindOfClass:propertyClass] && object != [NSNull null])
             {
-                [NSException raise:AutocodingException format:@"Expected '%@' to be a %@, but was actually a %@", key, propertyClass, [object class]];
+                [NSException raise:TFAutocodingException format:@"Expected '%@' to be a %@, but was actually a %@", key, propertyClass, [object class]];
             }
             [self setValue:object forKey:key];
         }

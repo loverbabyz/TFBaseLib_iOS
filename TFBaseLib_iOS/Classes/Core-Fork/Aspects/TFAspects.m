@@ -91,7 +91,7 @@ static NSString *const TFAspectsMessagePrefix = @"tfaspects_";
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Public Aspects API
 
-+ (id<TFAspectToken>)aspect_hookSelector:(SEL)selector
++ (id<TFAspectToken>)tf_aspect_hookSelector:(SEL)selector
                       withOptions:(TFAspectOptions)options
                        usingBlock:(id)block
                             error:(NSError **)error {
@@ -99,7 +99,7 @@ static NSString *const TFAspectsMessagePrefix = @"tfaspects_";
 }
 
 /// @return A token which allows to later deregister the aspect.
-- (id<TFAspectToken>)aspect_hookSelector:(SEL)selector
+- (id<TFAspectToken>)tf_aspect_hookSelector:(SEL)selector
                       withOptions:(TFAspectOptions)options
                        usingBlock:(id)block
                             error:(NSError **)error {
