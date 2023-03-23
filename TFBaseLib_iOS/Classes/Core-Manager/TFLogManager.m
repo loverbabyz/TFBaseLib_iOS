@@ -10,7 +10,7 @@
 #import "NSDictionary+Ext.h"
 
 #define DD_LEGACY_MACROS 0
-#import "DDLog.h"
+#import <CocoaLumberjack/CocoaLumberjack.h>
 #import "CocoaLumberjack.h"
 
 #define TFLogDir @"TF/Files/Logs"
