@@ -1,11 +1,11 @@
 //
-//  Aspects.m
+//  TFAspects.m
 //  Aspects - A delightful, simple library for aspect oriented programming.
 //
 //  Copyright (c) 2014 Peter Steinberger. Licensed under the MIT license.
 //
 
-#import "Aspects.h"
+#import "TFAspects.h"
 #import <libkern/OSAtomic.h>
 #import <objc/runtime.h>
 #import <objc/message.h>
@@ -15,15 +15,15 @@
 #define AspectLogError(...) do { NSLog(__VA_ARGS__); }while(0)
 
 // Block internals.
-typedef NS_OPTIONS(int, AspectBlockFlags) {
-	AspectBlockFlagsHasCopyDisposeHelpers = (1 << 25),
-	AspectBlockFlagsHasSignature          = (1 << 30)
+typedef NS_OPTIONS(int, TFAspectBlockFlags) {
+	TFAspectBlockFlagsHasCopyDisposeHelpers = (1 << 25),
+	TFAspectBlockFlagsHasSignature          = (1 << 30)
 };
-typedef struct _AspectBlock {
+typedef struct _TFAspectBlock {
 	__unused Class isa;
-	AspectBlockFlags flags;
+	TFAspectBlockFlags flags;
 	__unused int reserved;
-	void (__unused *invoke)(struct _AspectBlock *block, ...);
+	void (__unused *invoke)(struct _TFAspectBlock *block, ...);
 	struct {
 		unsigned long int reserved;
 		unsigned long int size;
@@ -35,9 +35,9 @@ typedef struct _AspectBlock {
 		const char *layout;
 	} *descriptor;
 	// imported variables
-} *AspectBlockRef;
+} *TFAspectBlockRef;
 
-@interface AspectInfo : NSObject <AspectInfo>
+@interface TFAspectInfo : NSObject <TFAspectInfo>
 - (id)initWithInstance:(__unsafe_unretained id)instance invocation:(NSInvocation *)invocation;
 @property (nonatomic, unsafe_unretained, readonly) id instance;
 @property (nonatomic, strong, readonly) NSArray *arguments;
@@ -45,19 +45,19 @@ typedef struct _AspectBlock {
 @end
 
 // Tracks a single aspect.
-@interface AspectIdentifier : NSObject
-+ (instancetype)identifierWithSelector:(SEL)selector object:(id)object options:(AspectOptions)options block:(id)block error:(NSError **)error;
-- (BOOL)invokeWithInfo:(id<AspectInfo>)info;
+@interface TFAspectIdentifier : NSObject
++ (instancetype)identifierWithSelector:(SEL)selector object:(id)object options:(TFAspectOptions)options block:(id)block error:(NSError **)error;
+- (BOOL)invokeWithInfo:(id<TFAspectInfo>)info;
 @property (nonatomic, assign) SEL selector;
 @property (nonatomic, strong) id block;
 @property (nonatomic, strong) NSMethodSignature *blockSignature;
 @property (nonatomic, weak) id object;
-@property (nonatomic, assign) AspectOptions options;
+@property (nonatomic, assign) TFAspectOptions options;
 @end
 
 // Tracks all aspects for an object/class.
-@interface AspectsContainer : NSObject
-- (void)addAspect:(AspectIdentifier *)aspect withOptions:(AspectOptions)injectPosition;
+@interface TFAspectsContainer : NSObject
+- (void)addAspect:(TFAspectIdentifier *)aspect withOptions:(TFAspectOptions)injectPosition;
 - (BOOL)removeAspect:(id)aspect;
 - (BOOL)hasAspects;
 @property (atomic, copy) NSArray *beforeAspects;
@@ -65,42 +65,42 @@ typedef struct _AspectBlock {
 @property (atomic, copy) NSArray *afterAspects;
 @end
 
-@interface AspectTracker : NSObject
-- (id)initWithTrackedClass:(Class)trackedClass parent:(AspectTracker *)parent;
+@interface TFAspectTracker : NSObject
+- (id)initWithTrackedClass:(Class)trackedClass parent:(TFAspectTracker *)parent;
 @property (nonatomic, strong) Class trackedClass;
 @property (nonatomic, strong) NSMutableSet *selectorNames;
-@property (nonatomic, weak) AspectTracker *parentEntry;
+@property (nonatomic, weak) TFAspectTracker *parentEntry;
 @end
 
-@interface NSInvocation (Aspects)
+@interface NSInvocation (TFAspects)
 - (NSArray *)aspects_arguments;
 @end
 
-#define AspectPositionFilter 0x07
+#define TFAspectPositionFilter 0x07
 
 #define AspectError(errorCode, errorDescription) do { \
 AspectLogError(@"Aspects: %@", errorDescription); \
-if (error) { *error = [NSError errorWithDomain:AspectErrorDomain code:errorCode userInfo:@{NSLocalizedDescriptionKey: errorDescription}]; }}while(0)
+if (error) { *error = [NSError errorWithDomain:TFAspectErrorDomain code:errorCode userInfo:@{NSLocalizedDescriptionKey: errorDescription}]; }}while(0)
 
-NSString *const AspectErrorDomain = @"AspectErrorDomain";
-static NSString *const AspectsSubclassSuffix = @"_Aspects_";
-static NSString *const AspectsMessagePrefix = @"aspects_";
+NSString *const TFAspectErrorDomain = @"TFAspectErrorDomain";
+static NSString *const TFAspectsSubclassSuffix = @"_TFAspects_";
+static NSString *const TFAspectsMessagePrefix = @"tfaspects_";
 
-@implementation NSObject (Aspects)
+@implementation NSObject (TFAspects)
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Public Aspects API
 
-+ (id<AspectToken>)aspect_hookSelector:(SEL)selector
-                      withOptions:(AspectOptions)options
++ (id<TFAspectToken>)aspect_hookSelector:(SEL)selector
+                      withOptions:(TFAspectOptions)options
                        usingBlock:(id)block
                             error:(NSError **)error {
     return aspect_add((id)self, selector, options, block, error);
 }
 
 /// @return A token which allows to later deregister the aspect.
-- (id<AspectToken>)aspect_hookSelector:(SEL)selector
-                      withOptions:(AspectOptions)options
+- (id<TFAspectToken>)aspect_hookSelector:(SEL)selector
+                      withOptions:(TFAspectOptions)options
                        usingBlock:(id)block
                             error:(NSError **)error {
     return aspect_add(self, selector, options, block, error);
@@ -109,16 +109,16 @@ static NSString *const AspectsMessagePrefix = @"aspects_";
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Private Helper
 
-static id aspect_add(id self, SEL selector, AspectOptions options, id block, NSError **error) {
+static id aspect_add(id self, SEL selector, TFAspectOptions options, id block, NSError **error) {
     NSCParameterAssert(self);
     NSCParameterAssert(selector);
     NSCParameterAssert(block);
 
-    __block AspectIdentifier *identifier = nil;
+    __block TFAspectIdentifier *identifier = nil;
     aspect_performLocked(^{
         if (aspect_isSelectorAllowedAndTrack(self, selector, options, error)) {
-            AspectsContainer *aspectContainer = aspect_getContainerForObject(self, selector);
-            identifier = [AspectIdentifier identifierWithSelector:selector object:self options:options block:block error:error];
+            TFAspectsContainer *aspectContainer = aspect_getContainerForObject(self, selector);
+            identifier = [TFAspectIdentifier identifierWithSelector:selector object:self options:options block:block error:error];
             if (identifier) {
                 [aspectContainer addAspect:identifier withOptions:options];
 
@@ -130,14 +130,14 @@ static id aspect_add(id self, SEL selector, AspectOptions options, id block, NSE
     return identifier;
 }
 
-static BOOL aspect_remove(AspectIdentifier *aspect, NSError **error) {
-    NSCAssert([aspect isKindOfClass:AspectIdentifier.class], @"Must have correct type.");
+static BOOL aspect_remove(TFAspectIdentifier *aspect, NSError **error) {
+    NSCAssert([aspect isKindOfClass:TFAspectIdentifier.class], @"Must have correct type.");
 
     __block BOOL success = NO;
     aspect_performLocked(^{
         id self = aspect.object; // strongify
         if (self) {
-            AspectsContainer *aspectContainer = aspect_getContainerForObject(self, aspect.selector);
+            TFAspectsContainer *aspectContainer = aspect_getContainerForObject(self, aspect.selector);
             success = [aspectContainer removeAspect:aspect];
 
             aspect_cleanupHookedClassAndSelector(self, aspect.selector);
@@ -147,7 +147,7 @@ static BOOL aspect_remove(AspectIdentifier *aspect, NSError **error) {
             aspect.selector = NULL;
         }else {
             NSString *errrorDesc = [NSString stringWithFormat:@"Unable to deregister hook. Object already deallocated: %@", aspect];
-            AspectError(AspectErrorRemoveObjectAlreadyDeallocated, errrorDesc);
+            AspectError(TFAspectErrorRemoveObjectAlreadyDeallocated, errrorDesc);
         }
     });
     return success;
@@ -162,24 +162,24 @@ static void aspect_performLocked(dispatch_block_t block) {
 
 static SEL aspect_aliasForSelector(SEL selector) {
     NSCParameterAssert(selector);
-	return NSSelectorFromString([AspectsMessagePrefix stringByAppendingFormat:@"_%@", NSStringFromSelector(selector)]);
+	return NSSelectorFromString([TFAspectsMessagePrefix stringByAppendingFormat:@"_%@", NSStringFromSelector(selector)]);
 }
 
 static NSMethodSignature *aspect_blockMethodSignature(id block, NSError **error) {
-    AspectBlockRef layout = (__bridge void *)block;
-	if (!(layout->flags & AspectBlockFlagsHasSignature)) {
+    TFAspectBlockRef layout = (__bridge void *)block;
+	if (!(layout->flags & TFAspectBlockFlagsHasSignature)) {
         NSString *description = [NSString stringWithFormat:@"The block %@ doesn't contain a type signature.", block];
-        AspectError(AspectErrorMissingBlockSignature, description);
+        AspectError(TFAspectErrorMissingBlockSignature, description);
         return nil;
     }
 	void *desc = layout->descriptor;
 	desc += 2 * sizeof(unsigned long int);
-	if (layout->flags & AspectBlockFlagsHasCopyDisposeHelpers) {
+	if (layout->flags & TFAspectBlockFlagsHasCopyDisposeHelpers) {
 		desc += 2 * sizeof(void *);
     }
 	if (!desc) {
         NSString *description = [NSString stringWithFormat:@"The block %@ doesn't has a type signature.", block];
-        AspectError(AspectErrorMissingBlockSignature, description);
+        AspectError(TFAspectErrorMissingBlockSignature, description);
         return nil;
     }
 	const char *signature = (*(const char **)desc);
@@ -218,7 +218,7 @@ static BOOL aspect_isCompatibleBlockSignature(NSMethodSignature *blockSignature,
 
     if (!signaturesMatch) {
         NSString *description = [NSString stringWithFormat:@"Blog signature %@ doesn't match %@.", blockSignature, methodSignature];
-        AspectError(AspectErrorIncompatibleBlockSignature, description);
+        AspectError(TFAspectErrorIncompatibleBlockSignature, description);
         return NO;
     }
     return YES;
@@ -312,15 +312,15 @@ static void aspect_cleanupHookedClassAndSelector(NSObject *self, SEL selector) {
     aspect_deregisterTrackedSelector(self, selector);
 
     // Get the aspect container and check if there are any hooks remaining. Clean up if there are not.
-    AspectsContainer *container = aspect_getContainerForObject(self, selector);
+    TFAspectsContainer *container = aspect_getContainerForObject(self, selector);
     if (!container.hasAspects) {
         // Destroy the container
         aspect_destroyContainerForObject(self, selector);
 
         // Figure out how the class was modified to undo the changes.
         NSString *className = NSStringFromClass(klass);
-        if ([className hasSuffix:AspectsSubclassSuffix]) {
-            Class originalClass = NSClassFromString([className stringByReplacingOccurrencesOfString:AspectsSubclassSuffix withString:@""]);
+        if ([className hasSuffix:TFAspectsSubclassSuffix]) {
+            Class originalClass = NSClassFromString([className stringByReplacingOccurrencesOfString:TFAspectsSubclassSuffix withString:@""]);
             NSCAssert(originalClass != nil, @"Original class must exist");
             object_setClass(self, originalClass);
             AspectLog(@"Aspects: %@ has been restored.", NSStringFromClass(originalClass));
@@ -347,7 +347,7 @@ static Class aspect_hookClass(NSObject *self, NSError **error) {
 	NSString *className = NSStringFromClass(baseClass);
 
     // Already subclassed
-	if ([className hasSuffix:AspectsSubclassSuffix]) {
+	if ([className hasSuffix:TFAspectsSubclassSuffix]) {
 		return baseClass;
 
         // We swizzle a class object, not a single object.
@@ -359,14 +359,14 @@ static Class aspect_hookClass(NSObject *self, NSError **error) {
     }
 
     // Default case. Create dynamic subclass.
-	const char *subclassName = [className stringByAppendingString:AspectsSubclassSuffix].UTF8String;
+	const char *subclassName = [className stringByAppendingString:TFAspectsSubclassSuffix].UTF8String;
 	Class subclass = objc_getClass(subclassName);
 
 	if (subclass == nil) {
 		subclass = objc_allocateClassPair(baseClass, subclassName, 0);
 		if (subclass == nil) {
             NSString *errrorDesc = [NSString stringWithFormat:@"objc_allocateClassPair failed to allocate class %s.", subclassName];
-            AspectError(AspectErrorFailedToAllocateClassPair, errrorDesc);
+            AspectError(TFAspectErrorFailedToAllocateClassPair, errrorDesc);
             return nil;
         }
 
@@ -456,9 +456,9 @@ static void aspect_undoSwizzleClassInPlace(Class klass) {
 
 // This is a macro so we get a cleaner stack trace.
 #define aspect_invoke(aspects, info) \
-for (AspectIdentifier *aspect in aspects) {\
+for (TFAspectIdentifier *aspect in aspects) {\
     [aspect invokeWithInfo:info];\
-    if (aspect.options & AspectOptionAutomaticRemoval) { \
+    if (aspect.options & TFAspectOptionAutomaticRemoval) { \
         aspectsToRemove = [aspectsToRemove?:@[] arrayByAddingObject:aspect]; \
     } \
 }
@@ -470,9 +470,9 @@ static void __ASPECTS_ARE_BEING_CALLED__(__unsafe_unretained NSObject *self, SEL
     SEL originalSelector = invocation.selector;
 	SEL aliasSelector = aspect_aliasForSelector(invocation.selector);
     invocation.selector = aliasSelector;
-    AspectsContainer *objectContainer = objc_getAssociatedObject(self, aliasSelector);
-    AspectsContainer *classContainer = aspect_getContainerForClass(object_getClass(self), aliasSelector);
-    AspectInfo *info = [[AspectInfo alloc] initWithInstance:self invocation:invocation];
+    TFAspectsContainer *objectContainer = objc_getAssociatedObject(self, aliasSelector);
+    TFAspectsContainer *classContainer = aspect_getContainerForClass(object_getClass(self), aliasSelector);
+    TFAspectInfo *info = [[TFAspectInfo alloc] initWithInstance:self invocation:invocation];
     NSArray *aspectsToRemove = nil;
 
     // Before hooks.
@@ -518,20 +518,20 @@ static void __ASPECTS_ARE_BEING_CALLED__(__unsafe_unretained NSObject *self, SEL
 #pragma mark - Aspect Container Management
 
 // Loads or creates the aspect container.
-static AspectsContainer *aspect_getContainerForObject(NSObject *self, SEL selector) {
+static TFAspectsContainer *aspect_getContainerForObject(NSObject *self, SEL selector) {
     NSCParameterAssert(self);
     SEL aliasSelector = aspect_aliasForSelector(selector);
-    AspectsContainer *aspectContainer = objc_getAssociatedObject(self, aliasSelector);
+    TFAspectsContainer *aspectContainer = objc_getAssociatedObject(self, aliasSelector);
     if (!aspectContainer) {
-        aspectContainer = [AspectsContainer new];
+        aspectContainer = [TFAspectsContainer new];
         objc_setAssociatedObject(self, aliasSelector, aspectContainer, OBJC_ASSOCIATION_RETAIN);
     }
     return aspectContainer;
 }
 
-static AspectsContainer *aspect_getContainerForClass(Class klass, SEL selector) {
+static TFAspectsContainer *aspect_getContainerForClass(Class klass, SEL selector) {
     NSCParameterAssert(klass);
-    AspectsContainer *classContainer = nil;
+    TFAspectsContainer *classContainer = nil;
     do {
         classContainer = objc_getAssociatedObject(klass, selector);
         if (classContainer.hasAspects) break;
@@ -558,7 +558,7 @@ static NSMutableDictionary *aspect_getSwizzledClassesDict() {
     return swizzledClassesDict;
 }
 
-static BOOL aspect_isSelectorAllowedAndTrack(NSObject *self, SEL selector, AspectOptions options, NSError **error) {
+static BOOL aspect_isSelectorAllowedAndTrack(NSObject *self, SEL selector, TFAspectOptions options, NSError **error) {
     static NSSet *disallowedSelectorList;
     static dispatch_once_t pred;
     dispatch_once(&pred, ^{
@@ -569,21 +569,21 @@ static BOOL aspect_isSelectorAllowedAndTrack(NSObject *self, SEL selector, Aspec
     NSString *selectorName = NSStringFromSelector(selector);
     if ([disallowedSelectorList containsObject:selectorName]) {
         NSString *errorDescription = [NSString stringWithFormat:@"Selector %@ is blacklisted.", selectorName];
-        AspectError(AspectErrorSelectorBlacklisted, errorDescription);
+        AspectError(TFAspectErrorSelectorBlacklisted, errorDescription);
         return NO;
     }
 
     // Additional checks.
-    AspectOptions position = options&AspectPositionFilter;
-    if ([selectorName isEqualToString:@"dealloc"] && position != AspectPositionBefore) {
-        NSString *errorDesc = @"AspectPositionBefore is the only valid position when hooking dealloc.";
-        AspectError(AspectErrorSelectorDeallocPosition, errorDesc);
+    TFAspectOptions position = options&TFAspectPositionFilter;
+    if ([selectorName isEqualToString:@"dealloc"] && position != TFAspectPositionBefore) {
+        NSString *errorDesc = @"TFAspectPositionBefore is the only valid position when hooking dealloc.";
+        AspectError(TFAspectErrorSelectorDeallocPosition, errorDesc);
         return NO;
     }
 
     if (![self respondsToSelector:selector] && ![self.class instancesRespondToSelector:selector]) {
         NSString *errorDesc = [NSString stringWithFormat:@"Unable to find selector -[%@ %@].", NSStringFromClass(self.class), selectorName];
-        AspectError(AspectErrorDoesNotRespondToSelector, errorDesc);
+        AspectError(TFAspectErrorDoesNotRespondToSelector, errorDesc);
         return NO;
     }
 
@@ -593,17 +593,17 @@ static BOOL aspect_isSelectorAllowedAndTrack(NSObject *self, SEL selector, Aspec
         NSMutableDictionary *swizzledClassesDict = aspect_getSwizzledClassesDict();
         Class currentClass = [self class];
         do {
-            AspectTracker *tracker = swizzledClassesDict[currentClass];
+            TFAspectTracker *tracker = swizzledClassesDict[currentClass];
             if ([tracker.selectorNames containsObject:selectorName]) {
 
                 // Find the topmost class for the log.
                 if (tracker.parentEntry) {
-                    AspectTracker *topmostEntry = tracker.parentEntry;
+                    TFAspectTracker *topmostEntry = tracker.parentEntry;
                     while (topmostEntry.parentEntry) {
                         topmostEntry = topmostEntry.parentEntry;
                     }
                     NSString *errorDescription = [NSString stringWithFormat:@"Error: %@ already hooked in %@. A method can only be hooked once per class hierarchy.", selectorName, NSStringFromClass(topmostEntry.trackedClass)];
-                    AspectError(AspectErrorSelectorAlreadyHookedInClassHierarchy, errorDescription);
+                    AspectError(TFAspectErrorSelectorAlreadyHookedInClassHierarchy, errorDescription);
                     return NO;
                 }else if (klass == currentClass) {
                     // Already modified and topmost!
@@ -614,11 +614,11 @@ static BOOL aspect_isSelectorAllowedAndTrack(NSObject *self, SEL selector, Aspec
 
         // Add the selector as being modified.
         currentClass = klass;
-        AspectTracker *parentTracker = nil;
+        TFAspectTracker *parentTracker = nil;
         do {
-            AspectTracker *tracker = swizzledClassesDict[currentClass];
+            TFAspectTracker *tracker = swizzledClassesDict[currentClass];
             if (!tracker) {
-                tracker = [[AspectTracker alloc] initWithTrackedClass:currentClass parent:parentTracker];
+                tracker = [[TFAspectTracker alloc] initWithTrackedClass:currentClass parent:parentTracker];
                 swizzledClassesDict[(id<NSCopying>)currentClass] = tracker;
             }
             [tracker.selectorNames addObject:selectorName];
@@ -637,7 +637,7 @@ static void aspect_deregisterTrackedSelector(id self, SEL selector) {
     NSString *selectorName = NSStringFromSelector(selector);
     Class currentClass = [self class];
     do {
-        AspectTracker *tracker = swizzledClassesDict[currentClass];
+        TFAspectTracker *tracker = swizzledClassesDict[currentClass];
         if (tracker) {
             [tracker.selectorNames removeObject:selectorName];
             if (tracker.selectorNames.count == 0) {
@@ -649,9 +649,9 @@ static void aspect_deregisterTrackedSelector(id self, SEL selector) {
 
 @end
 
-@implementation AspectTracker
+@implementation TFAspectTracker
 
-- (id)initWithTrackedClass:(Class)trackedClass parent:(AspectTracker *)parent {
+- (id)initWithTrackedClass:(Class)trackedClass parent:(TFAspectTracker *)parent {
     if (self = [super init]) {
         _trackedClass = trackedClass;
         _parentEntry = parent;
@@ -668,7 +668,7 @@ static void aspect_deregisterTrackedSelector(id self, SEL selector) {
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSInvocation (Aspects)
 
-@implementation NSInvocation (Aspects)
+@implementation NSInvocation (TFAspects)
 
 // Thanks to the ReactiveCocoa team for providing a generic solution for this.
 - (id)aspect_argumentAtIndex:(NSUInteger)index {
@@ -750,9 +750,9 @@ static void aspect_deregisterTrackedSelector(id self, SEL selector) {
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - AspectIdentifier
 
-@implementation AspectIdentifier
+@implementation TFAspectIdentifier
 
-+ (instancetype)identifierWithSelector:(SEL)selector object:(id)object options:(AspectOptions)options block:(id)block error:(NSError **)error {
++ (instancetype)identifierWithSelector:(SEL)selector object:(id)object options:(TFAspectOptions)options block:(id)block error:(NSError **)error {
     NSCParameterAssert(block);
     NSCParameterAssert(selector);
     NSMethodSignature *blockSignature = aspect_blockMethodSignature(block, error); // TODO: check signature compatibility, etc.
@@ -760,9 +760,9 @@ static void aspect_deregisterTrackedSelector(id self, SEL selector) {
         return nil;
     }
 
-    AspectIdentifier *identifier = nil;
+    TFAspectIdentifier *identifier = nil;
     if (blockSignature) {
-        identifier = [AspectIdentifier new];
+        identifier = [TFAspectIdentifier new];
         identifier.selector = selector;
         identifier.block = block;
         identifier.blockSignature = blockSignature;
@@ -772,7 +772,7 @@ static void aspect_deregisterTrackedSelector(id self, SEL selector) {
     return identifier;
 }
 
-- (BOOL)invokeWithInfo:(id<AspectInfo>)info {
+- (BOOL)invokeWithInfo:(id<TFAspectInfo>)info {
     NSInvocation *blockInvocation = [NSInvocation invocationWithMethodSignature:self.blockSignature];
     NSInvocation *originalInvocation = info.originalInvocation;
     NSUInteger numberOfArguments = self.blockSignature.numberOfArguments;
@@ -824,19 +824,19 @@ static void aspect_deregisterTrackedSelector(id self, SEL selector) {
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - AspectsContainer
 
-@implementation AspectsContainer
+@implementation TFAspectsContainer
 
 - (BOOL)hasAspects {
     return self.beforeAspects.count > 0 || self.insteadAspects.count > 0 || self.afterAspects.count > 0;
 }
 
-- (void)addAspect:(AspectIdentifier *)aspect withOptions:(AspectOptions)options {
+- (void)addAspect:(TFAspectIdentifier *)aspect withOptions:(TFAspectOptions)options {
     NSParameterAssert(aspect);
-    NSUInteger position = options&AspectPositionFilter;
+    NSUInteger position = options&TFAspectPositionFilter;
     switch (position) {
-        case AspectPositionBefore:  self.beforeAspects  = [(self.beforeAspects ?:@[]) arrayByAddingObject:aspect]; break;
-        case AspectPositionInstead: self.insteadAspects = [(self.insteadAspects?:@[]) arrayByAddingObject:aspect]; break;
-        case AspectPositionAfter:   self.afterAspects   = [(self.afterAspects  ?:@[]) arrayByAddingObject:aspect]; break;
+        case TFAspectPositionBefore:  self.beforeAspects  = [(self.beforeAspects ?:@[]) arrayByAddingObject:aspect]; break;
+        case TFAspectPositionInstead: self.insteadAspects = [(self.insteadAspects?:@[]) arrayByAddingObject:aspect]; break;
+        case TFAspectPositionAfter:   self.afterAspects   = [(self.afterAspects  ?:@[]) arrayByAddingObject:aspect]; break;
     }
 }
 
@@ -865,7 +865,7 @@ static void aspect_deregisterTrackedSelector(id self, SEL selector) {
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - AspectInfo
 
-@implementation AspectInfo
+@implementation TFAspectInfo
 
 @synthesize arguments = _arguments;
 
