@@ -251,7 +251,7 @@
             case 15:
                 letter =@"F"; break;
             default:
-                letter = [NSString stringWithFormat:@"%ld", number];
+                letter = [NSString stringWithFormat:@"%ld", (long)number];
         }
         hex = [letter stringByAppendingString:hex];
         if (decimal == 0) {
@@ -399,7 +399,7 @@
     if (num > 10000) {
         numStr = [NSString stringWithFormat:@"%.2f万",num/10000.0];
     } else {
-        numStr = [NSString stringWithFormat:@"%ld",num];
+        numStr = [NSString stringWithFormat:@"%ld",(long)num];
     }
     return numStr;
 }
