@@ -1,6 +1,6 @@
 //
-//  ObjcAssociatedObjectHelpers.m
-//  ObjcAssociatedObjectHelpers
+//  TFObjcAssociatedObjectHelpers.m
+//  TFObjcAssociatedObjectHelpers
 //
 //  Created by Jon Crooke on 01/10/2012.
 //  Copyright (c) 2012 Jonathan Crooke. All rights reserved.
@@ -23,12 +23,12 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "ObjcAssociatedObjectHelpers.h"
+#import "TFObjcAssociatedObjectHelpers.h"
 
 #if __has_feature(objc_arc)
-@implementation __ObjCAscWeakContainer
+@implementation __TFObjCAscWeakContainer
 + (instancetype)wrapObject:(id)object {
-	__ObjCAscWeakContainer *wrapper = [[self alloc] init];
+	__TFObjCAscWeakContainer *wrapper = [[self alloc] init];
   wrapper._object = object;
 	return wrapper;
 }

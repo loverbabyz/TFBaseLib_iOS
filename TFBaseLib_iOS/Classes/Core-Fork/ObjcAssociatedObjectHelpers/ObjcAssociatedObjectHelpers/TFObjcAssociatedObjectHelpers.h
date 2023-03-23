@@ -1,6 +1,6 @@
 //
-//  ObjcAssociatedObjectHelpers.h
-//  ObjcAssociatedObjectHelpers
+//  TFObjcAssociatedObjectHelpers.h
+//  TFObjcAssociatedObjectHelpers
 //
 //  Created by Jon Crooke on 01/10/2012.
 //  Copyright (c) 2012 Jonathan Crooke. All rights reserved.
@@ -39,7 +39,7 @@
 #pragma mark Weak reference containers
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #if __has_feature(objc_arc)
-@interface __ObjCAscWeakContainer : NSObject
+@interface __TFObjCAscWeakContainer : NSObject
 + (instancetype)wrapObject:(id)object;
 @property (weak) id _object;
 @end
@@ -48,8 +48,8 @@
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #pragma mark Quotation helper
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#define __OBJC_ASC_QUOTE(x) #x
-#define _OBJC_ASC_QUOTE(x) __OBJC_ASC_QUOTE(x)
+#define __TF_OBJC_ASC_QUOTE(x) #x
+#define _TF_OBJC_ASC_QUOTE(x) __TF_OBJC_ASC_QUOTE(x)
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #pragma mark Dynamic perform selector helper
@@ -68,18 +68,18 @@
 #pragma mark KVO helper
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #define _OBJC_ASC_WRAP_KVO_SETTER(getterName, expression) \
-  _OBJC_ASC_CHECK_AND_PERFORM(@"willChangeValueForKey:", @_OBJC_ASC_QUOTE(getterName)) \
+  _OBJC_ASC_CHECK_AND_PERFORM(@"willChangeValueForKey:", @_TF_OBJC_ASC_QUOTE(getterName)) \
   expression; \
-  _OBJC_ASC_CHECK_AND_PERFORM(@"didChangeValueForKey:", @_OBJC_ASC_QUOTE(getterName))
+  _OBJC_ASC_CHECK_AND_PERFORM(@"didChangeValueForKey:", @_TF_OBJC_ASC_QUOTE(getterName))
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #pragma mark Assign readwrite
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#define SYNTHESIZE_ASC_OBJ_ASSIGN(getterName, setterName) \
-  SYNTHESIZE_ASC_OBJ_ASSIGN_BLOCK(getterName, setterName, ^(id v){ return v; }, ^(id v){ return v; })
+#define TF_SYNTHESIZE_ASC_OBJ_ASSIGN(getterName, setterName) \
+  TF_SYNTHESIZE_ASC_OBJ_ASSIGN_BLOCK(getterName, setterName, ^(id v){ return v; }, ^(id v){ return v; })
 
-#define SYNTHESIZE_ASC_OBJ_ASSIGN_BLOCK(getterName, setterName, getterBlock, setterBlock) \
-static void* getterName##Key = _OBJC_ASC_QUOTE(getterName); \
+#define TF_SYNTHESIZE_ASC_OBJ_ASSIGN_BLOCK(getterName, setterName, getterBlock, setterBlock) \
+static void* getterName##Key = _TF_OBJC_ASC_QUOTE(getterName); \
 - (void)setterName:(id)value { \
   value = setterBlock(value); \
   objc_AssociationPolicy policy = OBJC_ASSOCIATION_ASSIGN; \
@@ -98,11 +98,11 @@ static void* getterName##Key = _OBJC_ASC_QUOTE(getterName); \
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #pragma mark Readwrite Object
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#define SYNTHESIZE_ASC_OBJ(getterName, setterName) \
-  SYNTHESIZE_ASC_OBJ_BLOCK(getterName, setterName, ^(id v){ return v; }, ^(id v){ return v; })
+#define TF_SYNTHESIZE_ASC_OBJ(getterName, setterName) \
+  TF_SYNTHESIZE_ASC_OBJ_BLOCK(getterName, setterName, ^(id v){ return v; }, ^(id v){ return v; })
 
-#define SYNTHESIZE_ASC_OBJ_BLOCK(getterName, setterName, getterBlock, setterBlock) \
-static void* getterName##Key = _OBJC_ASC_QUOTE(getterName); \
+#define TF_SYNTHESIZE_ASC_OBJ_BLOCK(getterName, setterName, getterBlock, setterBlock) \
+static void* getterName##Key = _TF_OBJC_ASC_QUOTE(getterName); \
 - (void)setterName:(id)value { \
   value = setterBlock(value); \
   objc_AssociationPolicy policy = \
@@ -123,11 +123,11 @@ static void* getterName##Key = _OBJC_ASC_QUOTE(getterName); \
 #pragma mark Readwrite Weak Object
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #if __has_feature(objc_arc)
-#define SYNTHESIZE_ASC_OBJ_WEAK(getterName, setterName) \
-	SYNTHESIZE_ASC_OBJ_WEAK_BLOCK(getterName, setterName, ^(id v){ return v; }, ^(id v){ return v; })
+#define TF_SYNTHESIZE_ASC_OBJ_WEAK(getterName, setterName) \
+	TF_SYNTHESIZE_ASC_OBJ_WEAK_BLOCK(getterName, setterName, ^(id v){ return v; }, ^(id v){ return v; })
 
-#define SYNTHESIZE_ASC_OBJ_WEAK_BLOCK(getterName, setterName, getterBlock, setterBlock) \
-static void* getterName##Key = _OBJC_ASC_QUOTE(getterName); \
+#define TF_SYNTHESIZE_ASC_OBJ_WEAK_BLOCK(getterName, setterName, getterBlock, setterBlock) \
+static void* getterName##Key = _TF_OBJC_ASC_QUOTE(getterName); \
 - (void)setterName:(id)value { \
   id wrapped = [__ObjCAscWeakContainer wrapObject:setterBlock(value)]; \
   @synchronized(self) { \
@@ -146,11 +146,11 @@ static void* getterName##Key = _OBJC_ASC_QUOTE(getterName); \
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #pragma mark Lazy readonly object
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#define SYNTHESIZE_ASC_OBJ_LAZY_EXP(getterName, initExpression) \
-  SYNTHESIZE_ASC_OBJ_LAZY_EXP_BLOCK(getterName, initExpression, ^(id v){ return v; })
+#define TF_SYNTHESIZE_ASC_OBJ_LAZY_EXP(getterName, initExpression) \
+  TF_SYNTHESIZE_ASC_OBJ_LAZY_EXP_BLOCK(getterName, initExpression, ^(id v){ return v; })
 
-#define SYNTHESIZE_ASC_OBJ_LAZY_EXP_BLOCK(getterName, initExpression, block) \
-static void* getterName##Key = _OBJC_ASC_QUOTE(getterName); \
+#define TF_SYNTHESIZE_ASC_OBJ_LAZY_EXP_BLOCK(getterName, initExpression, block) \
+static void* getterName##Key = _TF_OBJC_ASC_QUOTE(getterName); \
 - (id)getterName { \
   id value = nil; \
   @synchronized(self) { \
@@ -165,19 +165,19 @@ static void* getterName##Key = _OBJC_ASC_QUOTE(getterName); \
 }
 
 // Use default initialiser
-#define SYNTHESIZE_ASC_OBJ_LAZY(getterName, class) \
-  SYNTHESIZE_ASC_OBJ_LAZY_EXP_BLOCK(getterName, [[class alloc] init], ^(id v){ return v; })
-#define SYNTHESIZE_ASC_OBJ_LAZY_BLOCK(getterName, class, block) \
-  SYNTHESIZE_ASC_OBJ_LAZY_EXP_BLOCK(getterName, [[class alloc] init], block)
+#define TF_SYNTHESIZE_ASC_OBJ_LAZY(getterName, class) \
+  TF_SYNTHESIZE_ASC_OBJ_LAZY_EXP_BLOCK(getterName, [[class alloc] init], ^(id v){ return v; })
+#define TF_SYNTHESIZE_ASC_OBJ_LAZY_BLOCK(getterName, class, block) \
+  TF_SYNTHESIZE_ASC_OBJ_LAZY_EXP_BLOCK(getterName, [[class alloc] init], block)
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #pragma mark Primitive
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#define SYNTHESIZE_ASC_PRIMITIVE(getterName, setterName, type) \
-  SYNTHESIZE_ASC_PRIMITIVE_BLOCK(getterName, setterName, type, ^(type v){ return v; }, ^(type v){ return v; })
+#define TF_SYNTHESIZE_ASC_PRIMITIVE(getterName, setterName, type) \
+  TF_SYNTHESIZE_ASC_PRIMITIVE_BLOCK(getterName, setterName, type, ^(type v){ return v; }, ^(type v){ return v; })
 
-#define SYNTHESIZE_ASC_PRIMITIVE_BLOCK(getterName, setterName, type, getterBlock, setterBlock) \
-static void* getterName##Key = _OBJC_ASC_QUOTE(getterName); \
+#define TF_SYNTHESIZE_ASC_PRIMITIVE_BLOCK(getterName, setterName, type, getterBlock, setterBlock) \
+static void* getterName##Key = _TF_OBJC_ASC_QUOTE(getterName); \
 - (void)setterName:(type)value { \
   value = setterBlock(value); \
   @synchronized(self) { \

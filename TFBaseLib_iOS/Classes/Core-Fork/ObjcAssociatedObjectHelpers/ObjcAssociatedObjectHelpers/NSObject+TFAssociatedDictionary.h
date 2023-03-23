@@ -1,5 +1,5 @@
 //
-//  NSObject+AssociatedDictionary.m
+//  NSObject+TFAssociatedDictionary.h
 //  ObjcAssociatedObjectHelpers
 //
 //  Created by Jon Crooke on 02/10/2012.
@@ -23,9 +23,15 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "NSObject+AssociatedDictionary.h"
-#import "ObjcAssociatedObjectHelpers.h"
+#import <Foundation/Foundation.h>
 
-@implementation NSObject (AssociatedDictionary)
-SYNTHESIZE_ASC_OBJ_LAZY(ascObj_dictionary, NSMutableDictionary);
+/**
+ *  Category to add a lazily-instantiated `NSMutableDictionary` instance
+ *  to `NSObject`.
+ */
+@interface NSObject (TFAssociatedDictionary)
+/**
+ *  Lazily instantiated mutable dictionary
+ */
+@property (readonly) NSMutableDictionary *tf_ascObj_dictionary;
 @end

@@ -12,7 +12,7 @@
 #import <SystemConfiguration/SystemConfiguration.h>
 #import <CoreServices/CoreServices.h>
 
-#import "ObjcAssociatedObjectHelpers.h"
+#import "TFObjcAssociatedObjectHelpers.h"
 #import "TFAFNetworking.h"
 
 
@@ -26,8 +26,8 @@ typedef int (^RetryDelayCalcBlock)(int, int, int); // int totalRetriesAllowed, i
 
 @implementation TFHTTPSessionManager
 
-SYNTHESIZE_ASC_OBJ(__tasksDict, setTasksDict);
-SYNTHESIZE_ASC_OBJ(__retryDelayCalcBlock, setRetryDelayCalcBlock);
+TF_SYNTHESIZE_ASC_OBJ(__tasksDict, setTasksDict);
+TF_SYNTHESIZE_ASC_OBJ(__retryDelayCalcBlock, setRetryDelayCalcBlock);
 
 - (instancetype)initWithBaseURL:(NSURL *)url {
 #ifdef DEBUG
