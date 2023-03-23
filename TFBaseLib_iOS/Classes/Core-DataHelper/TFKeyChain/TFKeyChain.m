@@ -8,7 +8,7 @@
 
 #import "TFKeyChain.h"
 #import <objc/runtime.h>
-#import "SAMKeychain.h"
+#import "TFSAMKeychain.h"
 
 NSString * const TFKEYCHAIN_SERVICE = @"com.TFBaseLib.TFKeyChain";
 
@@ -46,65 +46,65 @@ enum TypeEncodings {
 
 static long long longLongGetter(TFKeyChain *self, SEL _cmd) {
     NSString *key = [self defaultsKeyForSelector:_cmd];
-    return [[SAMKeychain passwordForService:TFKEYCHAIN_SERVICE account:key]longLongValue];
+    return [[TFSAMKeychain passwordForService:TFKEYCHAIN_SERVICE account:key]longLongValue];
 }
 
 static void longLongSetter(TFKeyChain *self, SEL _cmd, long long value) {
     NSString *key = [self defaultsKeyForSelector:_cmd];
-    [SAMKeychain setPassword:[NSString stringWithFormat:@"%lld",value] forService:TFKEYCHAIN_SERVICE account:key];
+    [TFSAMKeychain setPassword:[NSString stringWithFormat:@"%lld",value] forService:TFKEYCHAIN_SERVICE account:key];
 }
 
 static bool boolGetter(TFKeyChain *self, SEL _cmd) {
     NSString *key = [self defaultsKeyForSelector:_cmd];
-    return [[SAMKeychain passwordForService:TFKEYCHAIN_SERVICE account:key]boolValue];
+    return [[TFSAMKeychain passwordForService:TFKEYCHAIN_SERVICE account:key]boolValue];
 }
 
 static void boolSetter(TFKeyChain *self, SEL _cmd, bool value) {
     NSString *key = [self defaultsKeyForSelector:_cmd];
-    [SAMKeychain setPassword:[NSString stringWithFormat:@"%d",value] forService:TFKEYCHAIN_SERVICE account:key];
+    [TFSAMKeychain setPassword:[NSString stringWithFormat:@"%d",value] forService:TFKEYCHAIN_SERVICE account:key];
 }
 
 static int integerGetter(TFKeyChain *self, SEL _cmd) {
     NSString *key = [self defaultsKeyForSelector:_cmd];
-    return [[SAMKeychain passwordForService:TFKEYCHAIN_SERVICE account:key]intValue];
+    return [[TFSAMKeychain passwordForService:TFKEYCHAIN_SERVICE account:key]intValue];
 }
 
 static void integerSetter(TFKeyChain *self, SEL _cmd, int value) {
     NSString *key = [self defaultsKeyForSelector:_cmd];
-    [SAMKeychain setPassword:[NSString stringWithFormat:@"%d",value] forService:TFKEYCHAIN_SERVICE account:key];
+    [TFSAMKeychain setPassword:[NSString stringWithFormat:@"%d",value] forService:TFKEYCHAIN_SERVICE account:key];
 }
 
 static float floatGetter(TFKeyChain *self, SEL _cmd) {
     NSString *key = [self defaultsKeyForSelector:_cmd];
-    return [[SAMKeychain passwordForService:TFKEYCHAIN_SERVICE account:key]floatValue];
+    return [[TFSAMKeychain passwordForService:TFKEYCHAIN_SERVICE account:key]floatValue];
 }
 
 static void floatSetter(TFKeyChain *self, SEL _cmd, float value) {
     NSString *key = [self defaultsKeyForSelector:_cmd];
-    [SAMKeychain setPassword:[NSString stringWithFormat:@"%f",value] forService:TFKEYCHAIN_SERVICE account:key];
+    [TFSAMKeychain setPassword:[NSString stringWithFormat:@"%f",value] forService:TFKEYCHAIN_SERVICE account:key];
 }
 
 static double doubleGetter(TFKeyChain *self, SEL _cmd) {
     NSString *key = [self defaultsKeyForSelector:_cmd];
-    return [[SAMKeychain passwordForService:TFKEYCHAIN_SERVICE account:key]doubleValue];
+    return [[TFSAMKeychain passwordForService:TFKEYCHAIN_SERVICE account:key]doubleValue];
 }
 
 static void doubleSetter(TFKeyChain *self, SEL _cmd, double value) {
     NSString *key = [self defaultsKeyForSelector:_cmd];
-    [SAMKeychain setPassword:[NSString stringWithFormat:@"%f",value] forService:TFKEYCHAIN_SERVICE account:key];
+    [TFSAMKeychain setPassword:[NSString stringWithFormat:@"%f",value] forService:TFKEYCHAIN_SERVICE account:key];
 }
 
 static id objectGetter(TFKeyChain *self, SEL _cmd) {
     NSString *key = [self defaultsKeyForSelector:_cmd];
-    return [SAMKeychain passwordForService:TFKEYCHAIN_SERVICE account:key];
+    return [TFSAMKeychain passwordForService:TFKEYCHAIN_SERVICE account:key];
 }
 
 static void objectSetter(TFKeyChain *self, SEL _cmd, id object) {
     NSString *key = [self defaultsKeyForSelector:_cmd];
     if (object) {
-        [SAMKeychain setPassword:[NSString stringWithFormat:@"%@",object] forService:TFKEYCHAIN_SERVICE account:key];
+        [TFSAMKeychain setPassword:[NSString stringWithFormat:@"%@",object] forService:TFKEYCHAIN_SERVICE account:key];
     } else {
-        [SAMKeychain deletePasswordForService:TFKEYCHAIN_SERVICE account:key];
+        [TFSAMKeychain deletePasswordForService:TFKEYCHAIN_SERVICE account:key];
     }
 }
 

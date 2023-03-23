@@ -1,6 +1,6 @@
 //
-//  SAMKeychain.h
-//  SAMKeychain
+//  TFSAMKeychain.h
+//  TFSAMKeychain
 //
 //  Created by Sam Soffes on 5/19/10.
 //  Copyright (c) 2010-2014 Sam Soffes. All rights reserved.
@@ -19,41 +19,41 @@ NS_ASSUME_NONNULL_BEGIN
  For codes returned by the operating system, refer to SecBase.h for your
  platform.
  */
-typedef NS_ENUM(OSStatus, SAMKeychainErrorCode) {
+typedef NS_ENUM(OSStatus, TFSAMKeychainErrorCode) {
 	/** Some of the arguments were invalid. */
-	SAMKeychainErrorBadArguments = -1001,
+	TFSAMKeychainErrorBadArguments = -1001,
 };
 
 /** SAMKeychain error domain */
-extern NSString *const kSAMKeychainErrorDomain;
+extern NSString *const kTFSAMKeychainErrorDomain;
 
 /** Account name. */
-extern NSString *const kSAMKeychainAccountKey;
+extern NSString *const kTFSAMKeychainAccountKey;
 
 /**
  Time the item was created.
 
  The value will be a string.
  */
-extern NSString *const kSAMKeychainCreatedAtKey;
+extern NSString *const kTFSAMKeychainCreatedAtKey;
 
 /** Item class. */
-extern NSString *const kSAMKeychainClassKey;
+extern NSString *const kTFSAMKeychainClassKey;
 
 /** Item description. */
-extern NSString *const kSAMKeychainDescriptionKey;
+extern NSString *const kTFSAMKeychainDescriptionKey;
 
 /** Item label. */
-extern NSString *const kSAMKeychainLabelKey;
+extern NSString *const kTFSAMKeychainLabelKey;
 
 /** Time the item was last modified.
 
  The value will be a string.
  */
-extern NSString *const kSAMKeychainLastModifiedKey;
+extern NSString *const kTFSAMKeychainLastModifiedKey;
 
 /** Where the item was created. */
-extern NSString *const kSAMKeychainWhereKey;
+extern NSString *const kTFSAMKeychainWhereKey;
 
 /**
  Simple wrapper for accessing accounts, getting passwords, setting passwords, and deleting passwords using the system
@@ -62,7 +62,7 @@ extern NSString *const kSAMKeychainWhereKey;
  This was originally inspired by EMKeychain and SDKeychain (both of which are now gone). Thanks to the authors.
  SAMKeychain has since switched to a simpler implementation that was abstracted from [SSToolkit](http://sstoolk.it).
  */
-@interface SAMKeychain : NSObject
+@interface TFSAMKeychain : NSObject
 
 #pragma mark - Classic methods
 
@@ -200,4 +200,4 @@ extern NSString *const kSAMKeychainWhereKey;
 
 NS_ASSUME_NONNULL_END
 
-#import "SAMKeychainQuery.h"
+#import "TFSAMKeychainQuery.h"

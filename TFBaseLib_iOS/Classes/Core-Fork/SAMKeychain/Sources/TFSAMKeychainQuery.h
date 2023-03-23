@@ -1,5 +1,5 @@
 //
-//  SAMKeychainQuery.h
+//  TFSAMKeychainQuery.h
 //  SAMKeychain
 //
 //  Created by Caleb Davenport on 3/19/13.
@@ -27,17 +27,17 @@ NS_ASSUME_NONNULL_BEGIN
 #endif
 
 #ifdef SAMKEYCHAIN_SYNCHRONIZATION_AVAILABLE
-typedef NS_ENUM(NSUInteger, SAMKeychainQuerySynchronizationMode) {
-	SAMKeychainQuerySynchronizationModeAny,
-	SAMKeychainQuerySynchronizationModeNo,
-	SAMKeychainQuerySynchronizationModeYes
+typedef NS_ENUM(NSUInteger, TFSAMKeychainQuerySynchronizationMode) {
+	TFSAMKeychainQuerySynchronizationModeAny,
+	TFSAMKeychainQuerySynchronizationModeNo,
+	TFSAMKeychainQuerySynchronizationModeYes
 };
 #endif
 
 /**
  Simple interface for querying or modifying keychain items.
  */
-@interface SAMKeychainQuery : NSObject
+@interface TFSAMKeychainQuery : NSObject
 
 /** kSecAttrAccount */
 @property (nonatomic, copy, nullable) NSString *account;
@@ -55,7 +55,7 @@ typedef NS_ENUM(NSUInteger, SAMKeychainQuerySynchronizationMode) {
 
 #ifdef SAMKEYCHAIN_SYNCHRONIZATION_AVAILABLE
 /** kSecAttrSynchronizable */
-@property (nonatomic) SAMKeychainQuerySynchronizationMode synchronizationMode;
+@property (nonatomic) TFSAMKeychainQuerySynchronizationMode synchronizationMode;
 #endif
 
 /** Root storage for password information */
