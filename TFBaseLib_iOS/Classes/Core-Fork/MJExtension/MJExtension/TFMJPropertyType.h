@@ -1,5 +1,5 @@
 //
-//  MJPropertyType.h
+//  TFMJPropertyType.h
 //  MJExtension
 //
 //  Created by mj on 14-1-15.
@@ -11,7 +11,7 @@
 /**
  *  包装一种类型
  */
-@interface MJPropertyType : NSObject
+@interface TFMJPropertyType : NSObject
 /** 类型标识符 */
 @property (nonatomic, copy) NSString *code;
 

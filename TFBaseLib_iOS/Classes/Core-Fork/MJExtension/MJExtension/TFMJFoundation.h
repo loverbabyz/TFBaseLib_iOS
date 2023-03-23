@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface MJFoundation : NSObject
+@interface TFMJFoundation : NSObject
 
 + (BOOL)isClassFromFoundation:(Class)c;
 + (BOOL)isFromNSObjectProtocolProperty:(NSString *)propertyName;

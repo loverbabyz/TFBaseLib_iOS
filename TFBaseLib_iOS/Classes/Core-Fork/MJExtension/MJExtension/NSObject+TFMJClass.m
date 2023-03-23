@@ -1,23 +1,23 @@
 //
-//  NSObject+MJClass.m
+//  NSObject+TFMJClass.m
 //  MJExtensionExample
 //
 //  Created by MJ Lee on 15/8/11.
 //  Copyright (c) 2015年 小码哥. All rights reserved.
 //
 
-#import "NSObject+MJClass.h"
-#import "NSObject+MJCoding.h"
-#import "NSObject+MJKeyValue.h"
-#import "MJFoundation.h"
+#import "NSObject+TFMJClass.h"
+#import "NSObject+TFMJCoding.h"
+#import "NSObject+TFMJKeyValue.h"
+#import "TFMJFoundation.h"
 #import <objc/runtime.h>
 
-static const char MJAllowedPropertyNamesKey = '\0';
-static const char MJIgnoredPropertyNamesKey = '\0';
-static const char MJAllowedCodingPropertyNamesKey = '\0';
-static const char MJIgnoredCodingPropertyNamesKey = '\0';
+static const char TFMJAllowedPropertyNamesKey = '\0';
+static const char TFMJIgnoredPropertyNamesKey = '\0';
+static const char TFMJAllowedCodingPropertyNamesKey = '\0';
+static const char TFMJIgnoredCodingPropertyNamesKey = '\0';
 
-@implementation NSObject (MJClass)
+@implementation NSObject (TFMJClass)
 
 + (NSMutableDictionary *)mj_classDictForKey:(const void *)key
 {
@@ -34,14 +34,14 @@ static const char MJIgnoredCodingPropertyNamesKey = '\0';
         ignoredCodingPropertyNamesDict = [NSMutableDictionary dictionary];
     });
     
-    if (key == &MJAllowedPropertyNamesKey) return allowedPropertyNamesDict;
-    if (key == &MJIgnoredPropertyNamesKey) return ignoredPropertyNamesDict;
-    if (key == &MJAllowedCodingPropertyNamesKey) return allowedCodingPropertyNamesDict;
-    if (key == &MJIgnoredCodingPropertyNamesKey) return ignoredCodingPropertyNamesDict;
+    if (key == &TFMJAllowedPropertyNamesKey) return allowedPropertyNamesDict;
+    if (key == &TFMJIgnoredPropertyNamesKey) return ignoredPropertyNamesDict;
+    if (key == &TFMJAllowedCodingPropertyNamesKey) return allowedCodingPropertyNamesDict;
+    if (key == &TFMJIgnoredCodingPropertyNamesKey) return ignoredCodingPropertyNamesDict;
     return nil;
 }
 
-+ (void)mj_enumerateClasses:(MJClassesEnumeration)enumeration
++ (void)tf_mj_enumerateClasses:(TFMJClassesEnumeration)enumeration
 {
     // 1.没有block就直接返回
     if (enumeration == nil) return;
@@ -60,11 +60,11 @@ static const char MJIgnoredCodingPropertyNamesKey = '\0';
         // 4.2.获得父类
         c = class_getSuperclass(c);
         
-        if ([MJFoundation isClassFromFoundation:c]) break;
+        if ([TFMJFoundation isClassFromFoundation:c]) break;
     }
 }
 
-+ (void)mj_enumerateAllClasses:(MJClassesEnumeration)enumeration
++ (void)tf_mj_enumerateAllClasses:(TFMJClassesEnumeration)enumeration
 {
     // 1.没有block就直接返回
     if (enumeration == nil) return;
@@ -86,53 +86,53 @@ static const char MJIgnoredCodingPropertyNamesKey = '\0';
 }
 
 #pragma mark - 属性黑名单配置
-+ (void)mj_setupIgnoredPropertyNames:(MJIgnoredPropertyNames)ignoredPropertyNames
++ (void)tf_mj_setupIgnoredPropertyNames:(TFMJIgnoredPropertyNames)ignoredPropertyNames
 {
-    [self mj_setupBlockReturnValue:ignoredPropertyNames key:&MJIgnoredPropertyNamesKey];
+    [self tf_mj_setupBlockReturnValue:ignoredPropertyNames key:&TFMJIgnoredPropertyNamesKey];
 }
 
-+ (NSMutableArray *)mj_totalIgnoredPropertyNames
++ (NSMutableArray *)tf_mj_totalIgnoredPropertyNames
 {
-    return [self mj_totalObjectsWithSelector:@selector(mj_ignoredPropertyNames) key:&MJIgnoredPropertyNamesKey];
+    return [self mj_totalObjectsWithSelector:@selector(mj_ignoredPropertyNames) key:&TFMJIgnoredPropertyNamesKey];
 }
 
 #pragma mark - 归档属性黑名单配置
-+ (void)mj_setupIgnoredCodingPropertyNames:(MJIgnoredCodingPropertyNames)ignoredCodingPropertyNames
++ (void)tf_mj_setupIgnoredCodingPropertyNames:(TFMJIgnoredCodingPropertyNames)ignoredCodingPropertyNames
 {
-    [self mj_setupBlockReturnValue:ignoredCodingPropertyNames key:&MJIgnoredCodingPropertyNamesKey];
+    [self tf_mj_setupBlockReturnValue:ignoredCodingPropertyNames key:&TFMJIgnoredCodingPropertyNamesKey];
 }
 
-+ (NSMutableArray *)mj_totalIgnoredCodingPropertyNames
++ (NSMutableArray *)tf_mj_totalIgnoredCodingPropertyNames
 {
-    return [self mj_totalObjectsWithSelector:@selector(mj_ignoredCodingPropertyNames) key:&MJIgnoredCodingPropertyNamesKey];
+    return [self mj_totalObjectsWithSelector:@selector(mj_ignoredCodingPropertyNames) key:&TFMJIgnoredCodingPropertyNamesKey];
 }
 
 #pragma mark - 属性白名单配置
-+ (void)mj_setupAllowedPropertyNames:(MJAllowedPropertyNames)allowedPropertyNames;
++ (void)tf_mj_setupAllowedPropertyNames:(TFMJAllowedPropertyNames)allowedPropertyNames;
 {
-    [self mj_setupBlockReturnValue:allowedPropertyNames key:&MJAllowedPropertyNamesKey];
+    [self tf_mj_setupBlockReturnValue:allowedPropertyNames key:&TFMJAllowedPropertyNamesKey];
 }
 
-+ (NSMutableArray *)mj_totalAllowedPropertyNames
++ (NSMutableArray *)tf_mj_totalAllowedPropertyNames
 {
-    return [self mj_totalObjectsWithSelector:@selector(mj_allowedPropertyNames) key:&MJAllowedPropertyNamesKey];
+    return [self mj_totalObjectsWithSelector:@selector(mj_allowedPropertyNames) key:&TFMJAllowedPropertyNamesKey];
 }
 
 #pragma mark - 归档属性白名单配置
-+ (void)mj_setupAllowedCodingPropertyNames:(MJAllowedCodingPropertyNames)allowedCodingPropertyNames
++ (void)tf_mj_setupAllowedCodingPropertyNames:(TFMJAllowedCodingPropertyNames)allowedCodingPropertyNames
 {
-    [self mj_setupBlockReturnValue:allowedCodingPropertyNames key:&MJAllowedCodingPropertyNamesKey];
+    [self tf_mj_setupBlockReturnValue:allowedCodingPropertyNames key:&TFMJAllowedCodingPropertyNamesKey];
 }
 
-+ (NSMutableArray *)mj_totalAllowedCodingPropertyNames
++ (NSMutableArray *)tf_mj_totalAllowedCodingPropertyNames
 {
-    return [self mj_totalObjectsWithSelector:@selector(mj_allowedCodingPropertyNames) key:&MJAllowedCodingPropertyNamesKey];
+    return [self mj_totalObjectsWithSelector:@selector(mj_allowedCodingPropertyNames) key:&TFMJAllowedCodingPropertyNamesKey];
 }
 
 #pragma mark - block和方法处理:存储block的返回值
-+ (void)mj_setupBlockReturnValue:(id (^)(void))block key:(const char *)key {
-    MJExtensionSemaphoreCreate
-    MJ_LOCK(mje_signalSemaphore);
++ (void)tf_mj_setupBlockReturnValue:(id (^)(void))block key:(const char *)key {
+    TFMJExtensionSemaphoreCreate
+    TF_MJ_LOCK(tf_mje_signalSemaphore);
     if (block) {
         objc_setAssociatedObject(self, key, block(), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     } else {
@@ -141,13 +141,13 @@ static const char MJIgnoredCodingPropertyNamesKey = '\0';
     
     // 清空数据
     [[self mj_classDictForKey:key] removeAllObjects];
-    MJ_UNLOCK(mje_signalSemaphore);
+    TF_MJ_UNLOCK(tf_mje_signalSemaphore);
 }
 
 + (NSMutableArray *)mj_totalObjectsWithSelector:(SEL)selector key:(const char *)key
 {
-    MJExtensionSemaphoreCreate
-    MJ_LOCK(mje_signalSemaphore);
+    TFMJExtensionSemaphoreCreate
+    TF_MJ_LOCK(tf_mje_signalSemaphore);
     NSMutableArray *array = [self mj_classDictForKey:key][NSStringFromClass(self)];
     if (array == nil) {
         // 创建、存储
@@ -163,12 +163,12 @@ static const char MJIgnoredCodingPropertyNamesKey = '\0';
             }
         }
         
-        [self mj_enumerateAllClasses:^(__unsafe_unretained Class c, BOOL *stop) {
+        [self tf_mj_enumerateAllClasses:^(__unsafe_unretained Class c, BOOL *stop) {
             NSArray *subArray = objc_getAssociatedObject(c, key);
             [array addObjectsFromArray:subArray];
         }];
     }
-    MJ_UNLOCK(mje_signalSemaphore);
+    TF_MJ_UNLOCK(tf_mje_signalSemaphore);
     return array;
 }
 @end

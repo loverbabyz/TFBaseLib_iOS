@@ -1,26 +1,26 @@
 //
-//  NSObject+MJCoding.m
+//  NSObject+TFMJCoding.m
 //  MJExtension
 //
 //  Created by mj on 14-1-15.
 //  Copyright (c) 2014年 小码哥. All rights reserved.
 //
 
-#import "NSObject+MJCoding.h"
-#import "NSObject+MJClass.h"
-#import "NSObject+MJProperty.h"
-#import "MJProperty.h"
+#import "NSObject+TFMJCoding.h"
+#import "NSObject+TFMJClass.h"
+#import "NSObject+TFMJProperty.h"
+#import "TFMJProperty.h"
 
-@implementation NSObject (MJCoding)
+@implementation NSObject (TFMJCoding)
 
-- (void)mj_encode:(NSCoder *)encoder
+- (void)tf_mj_encode:(NSCoder *)encoder
 {
     Class clazz = [self class];
     
-    NSArray *allowedCodingPropertyNames = [clazz mj_totalAllowedCodingPropertyNames];
-    NSArray *ignoredCodingPropertyNames = [clazz mj_totalIgnoredCodingPropertyNames];
+    NSArray *allowedCodingPropertyNames = [clazz tf_mj_totalAllowedCodingPropertyNames];
+    NSArray *ignoredCodingPropertyNames = [clazz tf_mj_totalIgnoredCodingPropertyNames];
     
-    [clazz mj_enumerateProperties:^(MJProperty *property, BOOL *stop) {
+    [clazz tf_mj_enumerateProperties:^(TFMJProperty *property, BOOL *stop) {
         // 检测是否被忽略
         if (allowedCodingPropertyNames.count && ![allowedCodingPropertyNames containsObject:property.name]) return;
         if ([ignoredCodingPropertyNames containsObject:property.name]) return;
@@ -31,14 +31,14 @@
     }];
 }
 
-- (void)mj_decode:(NSCoder *)decoder
+- (void)tf_mj_decode:(NSCoder *)decoder
 {
     Class clazz = [self class];
     
-    NSArray *allowedCodingPropertyNames = [clazz mj_totalAllowedCodingPropertyNames];
-    NSArray *ignoredCodingPropertyNames = [clazz mj_totalIgnoredCodingPropertyNames];
+    NSArray *allowedCodingPropertyNames = [clazz tf_mj_totalAllowedCodingPropertyNames];
+    NSArray *ignoredCodingPropertyNames = [clazz tf_mj_totalIgnoredCodingPropertyNames];
     
-    [clazz mj_enumerateProperties:^(MJProperty *property, BOOL *stop) {
+    [clazz tf_mj_enumerateProperties:^(TFMJProperty *property, BOOL *stop) {
         // 检测是否被忽略
         if (allowedCodingPropertyNames.count && ![allowedCodingPropertyNames containsObject:property.name]) return;
         if ([ignoredCodingPropertyNames containsObject:property.name]) return;

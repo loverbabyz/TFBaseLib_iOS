@@ -1,17 +1,17 @@
 //
-//  MJFoundation.m
+//  TFMJFoundation.m
 //  MJExtensionExample
 //
 //  Created by MJ Lee on 14/7/16.
 //  Copyright (c) 2014年 小码哥. All rights reserved.
 //
 
-#import "MJFoundation.h"
-#import "MJExtensionConst.h"
+#import "TFMJFoundation.h"
+#import "TFMJExtensionConst.h"
 #import <CoreData/CoreData.h>
 #import "objc/runtime.h"
 
-@implementation MJFoundation
+@implementation TFMJFoundation
 
 + (BOOL)isClassFromFoundation:(Class)c
 {

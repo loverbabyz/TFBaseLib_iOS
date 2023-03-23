@@ -1,5 +1,5 @@
 //
-//  NSObject+MJCoding.h
+//  NSObject+TFMJCoding.h
 //  MJExtension
 //
 //  Created by mj on 14-1-15.
@@ -7,12 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MJExtensionConst.h"
+#import "TFMJExtensionConst.h"
 
 /**
  *  Codeing协议
  */
-@protocol MJCoding <NSObject>
+@protocol TFMJCoding <NSObject>
 @optional
 /**
  *  这个数组中的属性名才会进行归档
@@ -24,21 +24,21 @@
 + (NSArray *)mj_ignoredCodingPropertyNames;
 @end
 
-@interface NSObject (MJCoding) <MJCoding>
+@interface NSObject (TFMJCoding) <TFMJCoding>
 /**
  *  解码（从文件中解析对象）
  */
-- (void)mj_decode:(NSCoder *)decoder;
+- (void)tf_mj_decode:(NSCoder *)decoder;
 /**
  *  编码（将对象写入文件中）
  */
-- (void)mj_encode:(NSCoder *)encoder;
+- (void)tf_mj_encode:(NSCoder *)encoder;
 @end
 
 /**
  归档的实现
  */
-#define MJCodingImplementation \
+#define TFMJCodingImplementation \
 - (id)initWithCoder:(NSCoder *)decoder \
 { \
 if (self = [super init]) { \
@@ -52,13 +52,13 @@ return self; \
 [self mj_encode:encoder]; \
 }\
 
-#define MJExtensionCodingImplementation MJCodingImplementation
+#define TFMJExtensionCodingImplementation TFMJCodingImplementation
 
-#define MJSecureCodingImplementation(CLASS, FLAG) \
-@interface CLASS (MJSecureCoding) <NSSecureCoding> \
+#define TFMJSecureCodingImplementation(CLASS, FLAG) \
+@interface CLASS (TFMJSecureCoding) <NSSecureCoding> \
 @end \
-@implementation CLASS (MJSecureCoding) \
-MJCodingImplementation \
+@implementation CLASS (TFMJSecureCoding) \
+TFMJCodingImplementation \
 + (BOOL)supportsSecureCoding { \
 return FLAG; \
 } \

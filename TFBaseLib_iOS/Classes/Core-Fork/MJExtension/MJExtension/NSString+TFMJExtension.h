@@ -7,27 +7,27 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MJExtensionConst.h"
+#import "TFMJExtensionConst.h"
 
-@interface NSString (MJExtension)
+@interface NSString (TFMJExtension)
 /**
  *  驼峰转下划线（loveYou -> love_you）
  */
-- (NSString *)mj_underlineFromCamel;
+- (NSString *)tf_mj_underlineFromCamel;
 /**
  *  下划线转驼峰（love_you -> loveYou）
  */
-- (NSString *)mj_camelFromUnderline;
+- (NSString *)tf_mj_camelFromUnderline;
 /**
  * 首字母变大写
  */
-- (NSString *)mj_firstCharUpper;
+- (NSString *)tf_mj_firstCharUpper;
 /**
  * 首字母变小写
  */
-- (NSString *)mj_firstCharLower;
+- (NSString *)tf_mj_firstCharLower;
 
-- (BOOL)mj_isPureInt;
+- (BOOL)tf_mj_isPureInt;
 
-- (NSURL *)mj_url;
+- (NSURL *)tf_mj_url;
 @end

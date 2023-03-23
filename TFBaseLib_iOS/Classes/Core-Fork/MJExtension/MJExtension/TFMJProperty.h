@@ -1,5 +1,5 @@
 //
-//  MJProperty.h
+//  TFMJProperty.h
 //  MJExtensionExample
 //
 //  Created by MJ Lee on 15/4/17.
@@ -8,20 +8,20 @@
 
 #import <Foundation/Foundation.h>
 #import <objc/runtime.h>
-#import "MJPropertyType.h"
-#import "MJPropertyKey.h"
+#import "TFMJPropertyType.h"
+#import "TFMJPropertyKey.h"
 
 /**
  *  包装一个成员
  */
-@interface MJProperty : NSObject
+@interface TFMJProperty : NSObject
 /** 成员属性 */
 @property (nonatomic, assign) objc_property_t property;
 /** 成员属性的名字 */
 @property (nonatomic, readonly) NSString *name;
 
 /** 成员属性的类型 */
-@property (nonatomic, readonly) MJPropertyType *type;
+@property (nonatomic, readonly) TFMJPropertyType *type;
 /** 成员属性来源于哪个类（可能是父类） */
 @property (nonatomic, assign) Class srcClass;
 

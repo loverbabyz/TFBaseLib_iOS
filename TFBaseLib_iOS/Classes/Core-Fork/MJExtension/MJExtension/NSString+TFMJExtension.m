@@ -6,10 +6,10 @@
 //  Copyright (c) 2015年 小码哥. All rights reserved.
 //
 
-#import "NSString+MJExtension.h"
+#import "NSString+TFMJExtension.h"
 
-@implementation NSString (MJExtension)
-- (NSString *)mj_underlineFromCamel
+@implementation NSString (TFMJExtension)
+- (NSString *)tf_mj_underlineFromCamel
 {
     if (self.length == 0) return self;
     NSMutableString *string = [NSMutableString string];
@@ -27,7 +27,7 @@
     return string;
 }
 
-- (NSString *)mj_camelFromUnderline
+- (NSString *)tf_mj_camelFromUnderline
 {
     if (self.length == 0) return self;
     NSMutableString *string = [NSMutableString string];
@@ -44,7 +44,7 @@
     return string;
 }
 
-- (NSString *)mj_firstCharLower
+- (NSString *)tf_mj_firstCharLower
 {
     if (self.length == 0) return self;
     NSMutableString *string = [NSMutableString string];
@@ -53,7 +53,7 @@
     return string;
 }
 
-- (NSString *)mj_firstCharUpper
+- (NSString *)tf_mj_firstCharUpper
 {
     if (self.length == 0) return self;
     NSMutableString *string = [NSMutableString string];
@@ -62,14 +62,14 @@
     return string;
 }
 
-- (BOOL)mj_isPureInt
+- (BOOL)tf_mj_isPureInt
 {
     NSScanner *scan = [NSScanner scannerWithString:self];
     int val;
     return [scan scanInt:&val] && [scan isAtEnd];
 }
 
-- (NSURL *)mj_url
+- (NSURL *)tf_mj_url
 {
 //    [self stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet characterSetWithCharactersInString:@"!$&'()*+,-./:;=?@_~%#[]"]];
 #pragma clang diagnostic push

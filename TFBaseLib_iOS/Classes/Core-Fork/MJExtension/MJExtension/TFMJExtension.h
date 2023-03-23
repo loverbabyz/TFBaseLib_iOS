@@ -7,14 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "NSObject+MJCoding.h"
-#import "NSObject+MJProperty.h"
-#import "NSObject+MJClass.h"
-#import "NSObject+MJKeyValue.h"
-#import "NSString+MJExtension.h"
-#import "MJExtensionConst.h"
+#import "NSObject+TFMJCoding.h"
+#import "NSObject+TFMJProperty.h"
+#import "NSObject+TFMJClass.h"
+#import "NSObject+TFMJKeyValue.h"
+#import "NSString+TFMJExtension.h"
+#import "TFMJExtensionConst.h"
 
-#import "MJFoundation.h"
+#import "TFMJFoundation.h"
 
 //! Project version number for MJExtension.
 FOUNDATION_EXPORT double MJExtensionVersionNumber;

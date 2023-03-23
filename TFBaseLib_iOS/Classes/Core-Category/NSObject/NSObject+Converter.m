@@ -7,33 +7,33 @@
 //
 
 #import "NSObject+Converter.h"
-#import "MJExtension.h"
+#import "TFMJExtension.h"
 
 @implementation NSObject (Converter)
 
 
 + (NSMutableArray *)arrayWithDictionary:(id)dictionary {
-    return [self mj_objectArrayWithKeyValuesArray:dictionary];
+    return [self tf_mj_objectArrayWithKeyValuesArray:dictionary];
 }
 
 + (id)modelWithDictionary:(id)dictionary {
-    return [self mj_objectWithKeyValues:dictionary];
+    return [self tf_mj_objectWithKeyValues:dictionary];
 }
 
 - (void)updateWithDictionary:(id)dictionary {
-    [self mj_setKeyValues:dictionary];
+    [self tf_mj_setKeyValues:dictionary];
 }
 
 - (NSString *)toJsonString {
-    return [self mj_JSONString];
+    return [self tf_mj_JSONString];
 }
 
 - (NSDictionary *)toJson {
-    return [self mj_keyValues];
+    return [self tf_mj_keyValues];
 }
 
 - (NSData *)toData {
-    return self.mj_JSONData;
+    return self.tf_mj_JSONData;
 }
 
 @end

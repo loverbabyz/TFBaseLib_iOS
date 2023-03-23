@@ -1,20 +1,20 @@
 //
-//  MJPropertyKey.m
+//  TFMJPropertyKey.m
 //  MJExtensionExample
 //
 //  Created by MJ Lee on 15/8/11.
 //  Copyright (c) 2015年 小码哥. All rights reserved.
 //
 
-#import "MJPropertyKey.h"
+#import "TFMJPropertyKey.h"
 
-@implementation MJPropertyKey
+@implementation TFMJPropertyKey
 
 - (id)valueInObject:(id)object
 {
-    if ([object isKindOfClass:[NSDictionary class]] && self.type == MJPropertyKeyTypeDictionary) {
+    if ([object isKindOfClass:[NSDictionary class]] && self.type == TFMJPropertyKeyTypeDictionary) {
         return object[self.name];
-    } else if ([object isKindOfClass:[NSArray class]] && self.type == MJPropertyKeyTypeArray) {
+    } else if ([object isKindOfClass:[NSArray class]] && self.type == TFMJPropertyKeyTypeArray) {
         NSArray *array = object;
         NSUInteger index = self.name.intValue;
         if (index < array.count) return array[index];

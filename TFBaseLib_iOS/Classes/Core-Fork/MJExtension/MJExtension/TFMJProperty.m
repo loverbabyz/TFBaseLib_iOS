@@ -1,25 +1,25 @@
 //
-//  MJProperty.m
+//  TFMJProperty.m
 //  MJExtensionExample
 //
 //  Created by MJ Lee on 15/4/17.
 //  Copyright (c) 2015年 小码哥. All rights reserved.
 //
 
-#import "MJProperty.h"
-#import "MJFoundation.h"
-#import "MJExtensionConst.h"
+#import "TFMJProperty.h"
+#import "TFMJFoundation.h"
+#import "TFMJExtensionConst.h"
 #import <objc/message.h>
 #include "TargetConditionals.h"
 
-@interface MJProperty()
+@interface TFMJProperty()
 @property (strong, nonatomic) NSMutableDictionary *propertyKeysDict;
 @property (strong, nonatomic) NSMutableDictionary *objectClassInArrayDict;
 @property (strong, nonatomic) dispatch_semaphore_t propertyKeysLock;
 @property (strong, nonatomic) dispatch_semaphore_t objectClassInArrayLock;
 @end
 
-@implementation MJProperty
+@implementation TFMJProperty
 
 #pragma mark - 初始化
 - (instancetype)init
@@ -36,7 +36,7 @@
 #pragma mark - 缓存
 + (instancetype)cachedPropertyWithProperty:(objc_property_t)property
 {
-    MJProperty *propertyObj = objc_getAssociatedObject(self, property);
+    TFMJProperty *propertyObj = objc_getAssociatedObject(self, property);
     if (propertyObj == nil) {
         propertyObj = [[self alloc] init];
         propertyObj.property = property;
@@ -50,7 +50,7 @@
 {
     _property = property;
     
-    MJExtensionAssertParamNotNil(property);
+    TFMJExtensionAssertParamNotNil(property);
     
     // 1.属性名
     _name = @(property_getName(property));
@@ -65,7 +65,7 @@
     } else {
         code = [attrs substringWithRange:NSMakeRange(loc, dotLoc - loc)];
     }
-    _type = [MJPropertyType cachedTypeWithCode:code];
+    _type = [TFMJPropertyType cachedTypeWithCode:code];
 }
 
 /**
@@ -115,7 +115,7 @@
             NSString *prefixKey = [oldKey substringToIndex:start];
             NSString *indexKey = prefixKey;
             if (prefixKey.length) {
-                MJPropertyKey *propertyKey = [[MJPropertyKey alloc] init];
+                TFMJPropertyKey *propertyKey = [[TFMJPropertyKey alloc] init];
                 propertyKey.name = prefixKey;
                 [propertyKeys addObject:propertyKey];
                 
@@ -126,13 +126,13 @@
             // 元素
             NSArray *cmps = [[indexKey stringByReplacingOccurrencesOfString:@"[" withString:@""] componentsSeparatedByString:@"]"];
             for (NSInteger i = 0; i<cmps.count - 1; i++) {
-                MJPropertyKey *subPropertyKey = [[MJPropertyKey alloc] init];
-                subPropertyKey.type = MJPropertyKeyTypeArray;
+                TFMJPropertyKey *subPropertyKey = [[TFMJPropertyKey alloc] init];
+                subPropertyKey.type = TFMJPropertyKeyTypeArray;
                 subPropertyKey.name = cmps[i];
                 [propertyKeys addObject:subPropertyKey];
             }
         } else { // 没有索引的key
-            MJPropertyKey *propertyKey = [[MJPropertyKey alloc] init];
+            TFMJPropertyKey *propertyKey = [[TFMJPropertyKey alloc] init];
             propertyKey.name = oldKey;
             [propertyKeys addObject:propertyKey];
         }
@@ -170,9 +170,9 @@
     NSString *key = NSStringFromClass(c);
     if (!key) return;
     
-    MJ_LOCK(self.propertyKeysLock);
+    TF_MJ_LOCK(self.propertyKeysLock);
     self.propertyKeysDict[key] = propertyKeys;
-    MJ_UNLOCK(self.propertyKeysLock);
+    TF_MJ_UNLOCK(self.propertyKeysLock);
 }
 
 - (NSArray *)propertyKeysForClass:(Class)c
@@ -180,9 +180,9 @@
     NSString *key = NSStringFromClass(c);
     if (!key) return nil;
     
-    MJ_LOCK(self.propertyKeysLock);
+    TF_MJ_LOCK(self.propertyKeysLock);
     NSArray *propertyKeys = self.propertyKeysDict[key];
-    MJ_UNLOCK(self.propertyKeysLock);
+    TF_MJ_UNLOCK(self.propertyKeysLock);
     return propertyKeys;
 }
 
@@ -193,9 +193,9 @@
     NSString *key = NSStringFromClass(c);
     if (!key) return;
     
-    MJ_LOCK(self.objectClassInArrayLock);
+    TF_MJ_LOCK(self.objectClassInArrayLock);
     self.objectClassInArrayDict[key] = objectClass;
-    MJ_UNLOCK(self.objectClassInArrayLock);
+    TF_MJ_UNLOCK(self.objectClassInArrayLock);
 }
 
 - (Class)objectClassInArrayForClass:(Class)c
@@ -203,9 +203,9 @@
     NSString *key = NSStringFromClass(c);
     if (!key) return nil;
     
-    MJ_LOCK(self.objectClassInArrayLock);
+    TF_MJ_LOCK(self.objectClassInArrayLock);
     Class objectClass = self.objectClassInArrayDict[key];
-    MJ_UNLOCK(self.objectClassInArrayLock);
+    TF_MJ_UNLOCK(self.objectClassInArrayLock);
     return objectClass;
 }
 @end
