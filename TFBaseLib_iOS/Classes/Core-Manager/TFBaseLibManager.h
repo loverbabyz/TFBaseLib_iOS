@@ -16,7 +16,6 @@
 #import "TFGCDTimerManager.h"
 #import "TFHTTPRequestManager.h"
 #import "TFLocationManager.h"
-#import "TFLogManager.h"
 #import "TFNetworkManager.h"
 #import "TFPermissionManager.h"
 #import "TFPhotosManager.h"
