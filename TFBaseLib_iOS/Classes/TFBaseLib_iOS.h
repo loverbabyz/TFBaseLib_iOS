@@ -23,3 +23,4 @@ FOUNDATION_EXPORT const unsigned char TFBaseLibVersionString[];
 #import "TFBaseLibMacro.h"
 #import "TFBaseLibManager.h"
 #import "TFBaseLibUtil.h"
+#import "TFBaaseLibFork.h"
