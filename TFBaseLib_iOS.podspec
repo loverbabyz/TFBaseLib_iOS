@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'TFBaseLib_iOS'
-  s.version          = '1.1.17'
+  s.version          = '1.1.17.1'
   s.summary          = 'Base lib for Treasure framework'
 
 # This description is used to generate tags and improve search results.
@@ -51,7 +51,7 @@ Base lib for Treasure framework
 
   s.frameworks = "Foundation", "UIKit", "CoreGraphics", "CoreData", "CoreText", "CoreTelephony", "CoreLocation", "Security", "ImageIO", "QuartzCore", "SystemConfiguration", "Photos", "CoreBluetooth", "AVFoundation", "Contacts", "LocalAuthentication", "CoreServices"
   s.xcconfig = {
-      'OTHER_LDFLAGS' => '-ObjC -all_load -force_load'
+      'OTHER_LDFLAGS' => '-ObjC'
   }
   
 end
