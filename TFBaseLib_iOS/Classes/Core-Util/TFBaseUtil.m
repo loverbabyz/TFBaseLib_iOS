@@ -51,4 +51,14 @@ TFSingletonM(Manager)
     return strongCachedKeyWindow;
 }
 
++ (NSString *)appDelegateClassString {
+    if (NSClassFromString(@"AppDelegate")) {
+        /// obj-c
+        return @"AppDelegate";
+    } else {
+        /// swift
+        return [NSString stringWithFormat:@"%@.%@", NSBundle.mainBundle.infoDictionary[@"CFBundleExecutable"], @"AppDelegate"];;
+    }
+}
+
 @end

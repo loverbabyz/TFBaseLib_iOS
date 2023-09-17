@@ -24,4 +24,9 @@ TFSingletonH(Manager)
  */
 + (UIWindow *)keyWindow;
 
+/**
+ Getting appDelegate class string
+ */
++ (NSString *)appDelegateClassString;
+
 @end
